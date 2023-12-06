@@ -3,15 +3,20 @@ title: "R Notebook"
 output:
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
 
 ```{r}
+# if not installed use: install.packages("package_name")
 library(readxl)
- 
+library(psych)
+
 hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
+
+oldmain_data
 ```
 
 $H_T$: There is no difference in average wifi speed between Old Main and Hanson
@@ -23,17 +28,47 @@ $H_A$: There is a difference in average wifi speed between Old Main and Hanson
 Lorem
 
 ## I. Introduction
+
 Lorem
 
 ## II. Experimental Setup
-Lorem
+
+```{r}
+# get the differece between download and upload speeds for each building
+result <- data.frame(download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`, 
+                     upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`)
+
+head(result)
+```
+
+Here is a summary of the data:
+
+```{r}
+summary(result$download_diff)
+```
+
+```{r}
+summary(result$upload_diff)
+```
+
+Now to get some of the statistics:
+
+```{r}
+download_sd <- sd(result$download_diff)
+download_mean <- sd(result$download_diff)
+
+upload_sd <- sd(result$upload_diff)
+upload_mean <- sd(result$upload_diff)
+```
 
 ## III. Results
+
 Lorem
 
 ## IV. Discussion
+
 Lorem
 
 ## References
-Using IEEE Styles
 
+Using IEEE Style
