@@ -1,0 +1,11 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(readxl)
+ 
+hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
+oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
+```
