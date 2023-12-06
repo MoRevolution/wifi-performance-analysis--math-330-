@@ -1,6 +1,7 @@
 ---
 title: "R Notebook"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
   pdf_document: default
@@ -15,13 +16,13 @@ library(psych)
 
 hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
-
-oldmain_data
 ```
 
 $H_T$: There is no difference in average wifi speed between Old Main and Hanson
 
 $H_A$: There is a difference in average wifi speed between Old Main and Hanson
+
+$\alpha=0.05$
 
 ### Abstract
 
