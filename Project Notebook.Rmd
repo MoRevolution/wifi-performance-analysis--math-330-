@@ -76,8 +76,8 @@ binwidth = 50 # passed to geom_histogram and stat_function
 set.seed(1)
 
 
-plot_dist_hist(n, download_mean, download_sd, binwidth)
-plot_dist_hist(n, upload_mean, upload_sd, binwidth)
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs( title = "Plot of Average Download Speed Difference Distribution", x="Speed (Mbps)", y="Occurance")
+plot_dist_hist(n, upload_mean, upload_sd, binwidth)+ labs( title = "Plot of Average Upload Speed Difference Distribution", x="Speed (Mbps)", y="Occurance")
 
 ```
 
