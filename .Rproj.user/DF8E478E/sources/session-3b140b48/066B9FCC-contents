@@ -9,17 +9,17 @@ output:
 ## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
 
 ```{r}
-library(readxl)
- 
+# if not installed use: install.packages("package_name")
+suppressWarnings(library(readxl))
+suppressWarnings(library(psych))
+
 hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
-
-hanson_data
 ```
 
-$H_T$: There is no difference in average wifi speed between Old Main and Hanson
+$H_T$: There is no difference in average WI-FI speed between Old Main and Hanson.
 
-$H_A$: There is a difference in average wifi speed between Old Main and Hanson
+$H_A$: There is a difference in average WI-FI speed between Old Main and Hanson.
 
 $\alpha=0.05$
 
@@ -28,17 +28,125 @@ $\alpha=0.05$
 Lorem
 
 ## I. Introduction
-Lorem
+
+Reliable, high-speed internet access is an essential resource for today's college works and studies, where assignments, entertainment, socialization, and more has been migrated to online platforms such as Moodle and Google services. Yet not all students enjoy equal access to robust networks on Augustana College campuses. This inequality manifests itself in WI-Fi infrastructure quality at academic buildings on campus. Through a comparative analysis of WI-Fi speeds conducted between only two locations, our project aimed to test our claim about the inequality of the WI-fi speed in science and humanities buildings.
+
+Within a week period, our team performed Wi-Fi speed tests between morning to afternoon over two locations: one in Hanson Hall (science building) and one in Old Main Hall (humanities). We recorded download and upload speeds using Augustana home grown Internet Speed Test, averaging 32 test results from 2 spots within two buildings. Our central hypotheses were twofold: that average download speeds would prove significantly faster in STEM-focused Hanson versus Old Main, and upload speed also faster in Hanson than Old Main.
+
+Our study provides compelling evidence of major infrastructure biases against academic disciplines seemingly "softer" or less valued than technical fields within the institutional technology status quo. Addressing deficiencies uncovered should constitute an urgent priority for equitable distribution of campus network resources benefiting all students.
 
 ## II. Experimental Setup
-Lorem
+
+```{r}
+# get the differece between download and upload speeds for each building
+result <-
+  data.frame(
+    download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
+    upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
+  )
+
+```
+
+Here is a summary of the data:
+
+```{r}
+h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
+h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
+h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
+h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
+```
+Hanson
+$$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$
+$$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$
+$$s_{Hanson\;download} = `r h_download_sd`$$
+$$s_{Hanson\;upload} = `r h_upload_sd`$$
+
+```{r}
+o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
+o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
+o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
+o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
+```
+Old Main
+$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$
+$$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$
+$$s_{OldMain\; download} = `r o_download_sd`$$
+$$s_{OldMain\; upload} = `r o_upload_sd`$$
+```{r}
+download_sd = sd(result$download_diff)
+download_mean = mean(result$download_diff)
+
+upload_sd = sd(result$upload_diff)
+upload_mean = mean(result$upload_diff)
+```
+DIFF
+$$\bar{X}_{DIFF \;download} = `r download_mean`$$
+$$\bar{X}_{DIFF \; upload} = `r upload_mean`$$
+$$s_{DIFF \; download} = `r download_sd`$$
+$$s_{DIFF \; upload} = `r upload_sd`$$
+
+```{r}
+summary(result$download_diff)
+```
+
+```{r}
+summary(result$upload_diff)
+```
+
+Now to get some of the statistics:
+
+```{r}
+download_sd <- sd(result$download_diff)
+download_mean <- mean(result$download_diff)
+
+upload_sd <- sd(result$upload_diff)
+upload_mean <- mean(result$upload_diff)
+
+#use ggplot2
+library(ggplot2)
+
+plot_dist_hist <- function(n, mean, sd, binwidth) {
+  df <- data.frame(x = rnorm(n, mean, sd))
+  ggplot(df, aes(
+    x = x,
+    mean = mean,
+    sd = sd,
+    binwidth = binwidth,
+    n = n
+  )) +
+    theme_bw() +
+    geom_histogram(
+      binwidth = binwidth,
+      colour = "white",
+      fill = "cornflowerblue",
+      linewidth = 0.1
+    ) +
+    stat_function(
+      fun = function(x)
+        dnorm(x, mean = mean, sd = sd) * n * binwidth,
+      color = "darkred",
+      linewidth = 1
+    ) + 
+    theme(plot.title = element_text(hjust = 0.5)) 
+}
+n = nrow(result)
+binwidth = 60 # passed to geom_histogram and stat_function
+set.seed(1)
+
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
+
+```
 
 ## III. Results
+
 Lorem
 
 ## IV. Discussion
+
 Lorem
 
-## References
-Using IEEE Styles
+Talk about the interview with Scott Dean \## References
 
+Using IEEE Style
