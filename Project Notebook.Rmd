@@ -1,12 +1,10 @@
 ---
-title: "R Notebook"
+title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
-
-## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
 
 ```{r}
 # if not installed use: install.packages("package_name")
