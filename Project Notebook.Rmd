@@ -1,9 +1,9 @@
 ---
 title: "R Notebook"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
@@ -52,6 +52,42 @@ result <-
 ```
 
 Here is a summary of the data:
+
+```{r}
+h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
+h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
+h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
+h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
+```
+Hanson
+$$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$
+$$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$
+$$s_{Hanson\;download} = `r h_download_sd`$$
+$$s_{Hanson\;upload} = `r h_upload_sd`$$
+
+```{r}
+o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
+o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
+o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
+o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
+```
+Old Main
+$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$
+$$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$
+$$s_{OldMain\; download} = `r o_download_sd`$$
+$$s_{OldMain\; upload} = `r o_upload_sd`$$
+```{r}
+download_sd = sd(result$download_diff)
+download_mean = mean(result$download_diff)
+
+upload_sd = sd(result$upload_diff)
+upload_mean = mean(result$upload_diff)
+```
+DIFF
+$$\bar{X}_{DIFF \;download} = `r download_mean`$$
+$$\bar{X}_{DIFF \; upload} = `r upload_mean`$$
+$$s_{DIFF \; download} = `r download_sd`$$
+$$s_{DIFF \; upload} = `r upload_sd`$$
 
 ```{r}
 summary(result$download_diff)
