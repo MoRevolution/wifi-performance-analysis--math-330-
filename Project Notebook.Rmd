@@ -1,9 +1,10 @@
 ---
 title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
+author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r}
@@ -140,12 +141,8 @@ plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of 
 plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
 
 ```
+$$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
 
-$$
-\begin{equation}
-P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)
-\end{equation}
-$$
 ## III. Results
 
 Lorem
