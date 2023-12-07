@@ -1752,17 +1752,171 @@ display: none;
 
 
 <!-- rnb-text-begin -->
+<div id="a-comparative-analysis-of-wi-fi-performance-between-science-and-humanities-buildings-evidence-of-infrastructure-inequality-on-a-college-campus" class="section level2">
+<h2>A Comparative Analysis of Wi-Fi Performance Between Science and
+Humanities Buildings: Evidence of Infrastructure Inequality on a College
+Campus</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkeGwpXG4gXG5oYW5zb25fZGF0YT0gcmVhZF9leGNlbChcImRhdGFzaGVldC54bHN4XCIsIHNoZWV0PVwiSGFuc29uXCIpXG5vbGRtYWluX2RhdGE9IHJlYWRfZXhjZWwoXCJkYXRhc2hlZXQueGxzeFwiLCBzaGVldD1cIk9sZCBNYWluXCIpXG5gYGAifQ== -->
-<pre class="r"><code>library(readxl)
- 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpZiBub3QgaW5zdGFsbGVkIHVzZTogaW5zdGFsbC5wYWNrYWdlcyhcInBhY2thZ2VfbmFtZVwiKVxuc3VwcHJlc3NXYXJuaW5ncyhsaWJyYXJ5KHJlYWR4bCkpXG5zdXBwcmVzc1dhcm5pbmdzKGxpYnJhcnkocHN5Y2gpKVxuXG5oYW5zb25fZGF0YT0gcmVhZF9leGNlbChcImRhdGFzaGVldC54bHN4XCIsIHNoZWV0PVwiSGFuc29uXCIpXG5vbGRtYWluX2RhdGE9IHJlYWRfZXhjZWwoXCJkYXRhc2hlZXQueGxzeFwiLCBzaGVldD1cIk9sZCBNYWluXCIpXG5gYGAifQ== -->
+<pre class="r"><code># if not installed use: install.packages(&quot;package_name&quot;)
+suppressWarnings(library(readxl))
+suppressWarnings(library(psych))
+
 hanson_data= read_excel(&quot;datasheet.xlsx&quot;, sheet=&quot;Hanson&quot;)
 oldmain_data= read_excel(&quot;datasheet.xlsx&quot;, sheet=&quot;Old Main&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><span class="math inline">\(H_T\)</span>: There is no difference in
+average WI-FI speed between Old Main and Hanson.</p>
+<p><span class="math inline">\(H_A\)</span>: There is a difference in
+average WI-FI speed between Old Main and Hanson.</p>
+<p><span class="math inline">\(\alpha=0.05\)</span></p>
+<div id="abstract" class="section level3">
+<h3>Abstract</h3>
+<p>Lorem</p>
+</div>
+</div>
+<div id="i.-introduction" class="section level2">
+<h2>I. Introduction</h2>
+<p>Reliable, high-speed internet access is an essential resource for
+today’s college works and studies, where assignments, entertainment,
+socialization, and more has been migrated to online platforms such as
+Moodle and Google services. Yet not all students enjoy equal access to
+robust networks on Augustana College campuses. This inequality manifests
+itself glaringly in WI-Fi infrastructure quality at academic buildings
+on campus. Through a comparative analysis of WI-Fi speeds conducted
+between only two locations, our project aimed to test our claim about
+the inequality of the WI-fi speed in science and humanities
+buildings.</p>
+<p>Within a week period, our team performed Wi-Fi speed tests between
+morning to afternoon over two locations: one in Hanson Hall (science
+building) and one in Old Main Hall (humanities). We recorded download
+and upload speeds using Augustana home grown Internet Speed Test,
+averaging 32 test results from 2 spots within two buildings. Our central
+hypotheses were twofold: that average download speeds would prove
+significantly faster in STEM-focused Hanson versus Old Main, and upload
+speed also faster in Hanson than Old Main.</p>
+<p>Our study provides compelling evidence of major infrastructure biases
+against academic disciplines seemingly “softer” or less valued than
+technical fields within the institutional technology status quo.
+Addressing deficiencies uncovered should constitute an urgent priority
+for equitable distribution of campus network resources benefiting all
+students.</p>
+</div>
+<div id="ii.-experimental-setup" class="section level2">
+<h2>II. Experimental Setup</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgdGhlIGRpZmZlcmVjZSBiZXR3ZWVuIGRvd25sb2FkIGFuZCB1cGxvYWQgc3BlZWRzIGZvciBlYWNoIGJ1aWxkaW5nXG5yZXN1bHQgPC1cbiAgZGF0YS5mcmFtZShcbiAgICBkb3dubG9hZF9kaWZmID0gaGFuc29uX2RhdGEkYERvd25sb2FkIFNwZWVkIChNYnBzKWAgLSBvbGRtYWluX2RhdGEkYERvd25sb2FkIFNwZWVkIChNYnBzKWAsXG4gICAgdXBsb2FkX2RpZmYgPSBoYW5zb25fZGF0YSRgVXBsb2FkIFNwZWVkIChNYnBzKWAgLSBvbGRtYWluX2RhdGEkYFVwbG9hZCBTcGVlZCAoTWJwcylgXG4gIClcblxuYGBgIn0= -->
+<pre class="r"><code># get the differece between download and upload speeds for each building
+result &lt;-
+  data.frame(
+    download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
+    upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
+  )
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Here is a summary of the data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaF9kb3dubG9hZF9tZWFuID0gbWVhbihoYW5zb25fZGF0YSRgRG93bmxvYWQgU3BlZWQgKE1icHMpYClcbmhfdXBsb2FkX21lYW4gPSBtZWFuKGhhbnNvbl9kYXRhJGBVcGxvYWQgU3BlZWQgKE1icHMpYClcbmhfZG93bmxvYWRfc2QgPSBzZChoYW5zb25fZGF0YSRgRG93bmxvYWQgU3BlZWQgKE1icHMpYClcbmhfdXBsb2FkX3NkID0gc2QoaGFuc29uX2RhdGEkYFVwbG9hZCBTcGVlZCAoTWJwcylgKVxuYGBgIn0= -->
+<pre class="r"><code>h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
+h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
+h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
+h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub19kb3dubG9hZF9tZWFuID0gbWVhbihvbGRtYWluX2RhdGEkYERvd25sb2FkIFNwZWVkIChNYnBzKWApXG5oX3VwbG9hZF9tZWFuID0gbWVhbihvbGRtYWluX2RhdGEkYFVwbG9hZCBTcGVlZCAoTWJwcylgKVxub19kb3dubG9hZF9zZCA9IHNkKG9sZG1haW5fZGF0YSRgRG93bmxvYWQgU3BlZWQgKE1icHMpYClcbmhfdXBsb2FkX3NkID0gc2Qob2xkbWFpbl9kYXRhJGBVcGxvYWQgU3BlZWQgKE1icHMpYClcbmBgYCJ9 -->
+<pre class="r"><code>o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
+h_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
+o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
+h_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHQkZG93bmxvYWRfZGlmZilcbmBgYCJ9 -->
+<pre class="r"><code>summary(result$download_diff)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHQkdXBsb2FkX2RpZmYpXG5gYGAifQ== -->
+<pre class="r"><code>summary(result$upload_diff)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now to get some of the statistics:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZG93bmxvYWRfc2QgPC0gc2QocmVzdWx0JGRvd25sb2FkX2RpZmYpXG5kb3dubG9hZF9tZWFuIDwtIG1lYW4ocmVzdWx0JGRvd25sb2FkX2RpZmYpXG5cbnVwbG9hZF9zZCA8LSBzZChyZXN1bHQkdXBsb2FkX2RpZmYpXG51cGxvYWRfbWVhbiA8LSBtZWFuKHJlc3VsdCR1cGxvYWRfZGlmZilcblxuI3VzZSBnZ3Bsb3QyXG5saWJyYXJ5KGdncGxvdDIpXG5cbnBsb3RfZGlzdF9oaXN0IDwtIGZ1bmN0aW9uKG4sIG1lYW4sIHNkLCBiaW53aWR0aCkge1xuICBkZiA8LSBkYXRhLmZyYW1lKHggPSBybm9ybShuLCBtZWFuLCBzZCkpXG4gIGdncGxvdChkZiwgYWVzKFxuICAgIHggPSB4LFxuICAgIG1lYW4gPSBtZWFuLFxuICAgIHNkID0gc2QsXG4gICAgYmlud2lkdGggPSBiaW53aWR0aCxcbiAgICBuID0gblxuICApKSArXG4gICAgdGhlbWVfYncoKSArXG4gICAgZ2VvbV9oaXN0b2dyYW0oXG4gICAgICBiaW53aWR0aCA9IGJpbndpZHRoLFxuICAgICAgY29sb3VyID0gXCJ3aGl0ZVwiLFxuICAgICAgZmlsbCA9IFwiY29ybmZsb3dlcmJsdWVcIixcbiAgICAgIGxpbmV3aWR0aCA9IDAuMVxuICAgICkgK1xuICAgIHN0YXRfZnVuY3Rpb24oXG4gICAgICBmdW4gPSBmdW5jdGlvbih4KVxuICAgICAgICBkbm9ybSh4LCBtZWFuID0gbWVhbiwgc2QgPSBzZCkgKiBuICogYmlud2lkdGgsXG4gICAgICBjb2xvciA9IFwiZGFya3JlZFwiLFxuICAgICAgbGluZXdpZHRoID0gMVxuICAgICkgKyBcbiAgICB0aGVtZShwbG90LnRpdGxlID0gZWxlbWVudF90ZXh0KGhqdXN0ID0gMC41KSkgXG59XG5uID0gbnJvdyhyZXN1bHQpXG5iaW53aWR0aCA9IDYwICMgcGFzc2VkIHRvIGdlb21faGlzdG9ncmFtIGFuZCBzdGF0X2Z1bmN0aW9uXG5zZXQuc2VlZCgxKVxuXG5wbG90X2Rpc3RfaGlzdChuLCBkb3dubG9hZF9tZWFuLCBkb3dubG9hZF9zZCwgYmlud2lkdGgpICsgbGFicyh0aXRsZSA9IFwiUGxvdCBvZiBBdmVyYWdlICAgRG93bmxvYWQgU3BlZWQgRGlmZmVyZW5jZSBEaXN0cmlidXRpb25cIiwgeCA9IFwiU3BlZWQgKE1icHMpXCIsIHkgPSBcIk9jY3VyYW5jZVwiKVxuXG5wbG90X2Rpc3RfaGlzdChuLCB1cGxvYWRfbWVhbiwgdXBsb2FkX3NkLCBiaW53aWR0aCkgKyBsYWJzKHRpdGxlID0gXCJQbG90IG9mIEF2ZXJhZ2UgVXBsb2FkIFNwZWVkIERpZmZlcmVuY2UgRGlzdHJpYnV0aW9uXCIseCA9XCJTcGVlZCAoTWJwcylcIiwgeSA9IFwiT2NjdXJhbmNlXCIpXG5cbmBgYCJ9 -->
+<pre class="r"><code>download_sd &lt;- sd(result$download_diff)
+download_mean &lt;- mean(result$download_diff)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkocmVhZHhsKQogCmhhbnNvbl9kYXRhPSByZWFkX2V4Y2VsKCJkYXRhc2hlZXQueGxzeCIsIHNoZWV0PSJIYW5zb24iKQpvbGRtYWluX2RhdGE9IHJlYWRfZXhjZWwoImRhdGFzaGVldC54bHN4Iiwgc2hlZXQ9Ik9sZCBNYWluIikKYGBgCg==</div>
+upload_sd &lt;- sd(result$upload_diff)
+upload_mean &lt;- mean(result$upload_diff)
+
+#use ggplot2
+library(ggplot2)
+
+plot_dist_hist &lt;- function(n, mean, sd, binwidth) {
+  df &lt;- data.frame(x = rnorm(n, mean, sd))
+  ggplot(df, aes(
+    x = x,
+    mean = mean,
+    sd = sd,
+    binwidth = binwidth,
+    n = n
+  )) +
+    theme_bw() +
+    geom_histogram(
+      binwidth = binwidth,
+      colour = &quot;white&quot;,
+      fill = &quot;cornflowerblue&quot;,
+      linewidth = 0.1
+    ) +
+    stat_function(
+      fun = function(x)
+        dnorm(x, mean = mean, sd = sd) * n * binwidth,
+      color = &quot;darkred&quot;,
+      linewidth = 1
+    ) + 
+    theme(plot.title = element_text(hjust = 0.5)) 
+}
+n = nrow(result)
+binwidth = 60 # passed to geom_histogram and stat_function
+set.seed(1)
+
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = &quot;Plot of Average   Download Speed Difference Distribution&quot;, x = &quot;Speed (Mbps)&quot;, y = &quot;Occurance&quot;)
+
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = &quot;Plot of Average Upload Speed Difference Distribution&quot;,x =&quot;Speed (Mbps)&quot;, y = &quot;Occurance&quot;)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="iii.-results" class="section level2">
+<h2>III. Results</h2>
+<p>Lorem</p>
+</div>
+<div id="iv.-discussion" class="section level2">
+<h2>IV. Discussion</h2>
+<p>Lorem</p>
+<p>Talk about the interview with Scott Dean ## References</p>
+<p>Using IEEE Style</p>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OgogIHBkZl9kb2N1bWVudDogZGVmYXVsdAogIGh0bWxfZG9jdW1lbnQ6CiAgICBkZl9wcmludDogcGFnZWQKLS0tCgojIyBBIENvbXBhcmF0aXZlIEFuYWx5c2lzIG9mIFdpLUZpIFBlcmZvcm1hbmNlIEJldHdlZW4gU2NpZW5jZSBhbmQgSHVtYW5pdGllcyBCdWlsZGluZ3M6IEV2aWRlbmNlIG9mIEluZnJhc3RydWN0dXJlIEluZXF1YWxpdHkgb24gYSBDb2xsZWdlIENhbXB1cwoKYGBge3J9CiMgaWYgbm90IGluc3RhbGxlZCB1c2U6IGluc3RhbGwucGFja2FnZXMoInBhY2thZ2VfbmFtZSIpCnN1cHByZXNzV2FybmluZ3MobGlicmFyeShyZWFkeGwpKQpzdXBwcmVzc1dhcm5pbmdzKGxpYnJhcnkocHN5Y2gpKQoKaGFuc29uX2RhdGE9IHJlYWRfZXhjZWwoImRhdGFzaGVldC54bHN4Iiwgc2hlZXQ9IkhhbnNvbiIpCm9sZG1haW5fZGF0YT0gcmVhZF9leGNlbCgiZGF0YXNoZWV0Lnhsc3giLCBzaGVldD0iT2xkIE1haW4iKQpgYGAKCiRIX1QkOiBUaGVyZSBpcyBubyBkaWZmZXJlbmNlIGluIGF2ZXJhZ2UgV0ktRkkgc3BlZWQgYmV0d2VlbiBPbGQgTWFpbiBhbmQgSGFuc29uLgoKJEhfQSQ6IFRoZXJlIGlzIGEgZGlmZmVyZW5jZSBpbiBhdmVyYWdlIFdJLUZJIHNwZWVkIGJldHdlZW4gT2xkIE1haW4gYW5kIEhhbnNvbi4KCiRcYWxwaGE9MC4wNSQKCiMjIyBBYnN0cmFjdAoKTG9yZW0KCiMjIEkuIEludHJvZHVjdGlvbgoKUmVsaWFibGUsIGhpZ2gtc3BlZWQgaW50ZXJuZXQgYWNjZXNzIGlzIGFuIGVzc2VudGlhbCByZXNvdXJjZSBmb3IgdG9kYXkncyBjb2xsZWdlIHdvcmtzIGFuZCBzdHVkaWVzLCB3aGVyZSBhc3NpZ25tZW50cywgZW50ZXJ0YWlubWVudCwgc29jaWFsaXphdGlvbiwgYW5kIG1vcmUgaGFzIGJlZW4gbWlncmF0ZWQgdG8gb25saW5lIHBsYXRmb3JtcyBzdWNoIGFzIE1vb2RsZSBhbmQgR29vZ2xlIHNlcnZpY2VzLiBZZXQgbm90IGFsbCBzdHVkZW50cyBlbmpveSBlcXVhbCBhY2Nlc3MgdG8gcm9idXN0IG5ldHdvcmtzIG9uIEF1Z3VzdGFuYSBDb2xsZWdlIGNhbXB1c2VzLiBUaGlzIGluZXF1YWxpdHkgbWFuaWZlc3RzIGl0c2VsZiBnbGFyaW5nbHkgaW4gV0ktRmkgaW5mcmFzdHJ1Y3R1cmUgcXVhbGl0eSBhdCBhY2FkZW1pYyBidWlsZGluZ3Mgb24gY2FtcHVzLiBUaHJvdWdoIGEgY29tcGFyYXRpdmUgYW5hbHlzaXMgb2YgV0ktRmkgc3BlZWRzIGNvbmR1Y3RlZCBiZXR3ZWVuIG9ubHkgdHdvIGxvY2F0aW9ucywgb3VyIHByb2plY3QgYWltZWQgdG8gdGVzdCBvdXIgY2xhaW0gYWJvdXQgdGhlIGluZXF1YWxpdHkgb2YgdGhlIFdJLWZpIHNwZWVkIGluIHNjaWVuY2UgYW5kIGh1bWFuaXRpZXMgYnVpbGRpbmdzLgoKV2l0aGluIGEgd2VlayBwZXJpb2QsIG91ciB0ZWFtIHBlcmZvcm1lZCBXaS1GaSBzcGVlZCB0ZXN0cyBiZXR3ZWVuIG1vcm5pbmcgdG8gYWZ0ZXJub29uIG92ZXIgdHdvIGxvY2F0aW9uczogb25lIGluIEhhbnNvbiBIYWxsIChzY2llbmNlIGJ1aWxkaW5nKSBhbmQgb25lIGluIE9sZCBNYWluIEhhbGwgKGh1bWFuaXRpZXMpLiBXZSByZWNvcmRlZCBkb3dubG9hZCBhbmQgdXBsb2FkIHNwZWVkcyB1c2luZyBBdWd1c3RhbmEgaG9tZSBncm93biBJbnRlcm5ldCBTcGVlZCBUZXN0LCBhdmVyYWdpbmcgMzIgdGVzdCByZXN1bHRzIGZyb20gMiBzcG90cyB3aXRoaW4gdHdvIGJ1aWxkaW5ncy4gT3VyIGNlbnRyYWwgaHlwb3RoZXNlcyB3ZXJlIHR3b2ZvbGQ6IHRoYXQgYXZlcmFnZSBkb3dubG9hZCBzcGVlZHMgd291bGQgcHJvdmUgc2lnbmlmaWNhbnRseSBmYXN0ZXIgaW4gU1RFTS1mb2N1c2VkIEhhbnNvbiB2ZXJzdXMgT2xkIE1haW4sIGFuZCB1cGxvYWQgc3BlZWQgYWxzbyBmYXN0ZXIgaW4gSGFuc29uIHRoYW4gT2xkIE1haW4uCgpPdXIgc3R1ZHkgcHJvdmlkZXMgY29tcGVsbGluZyBldmlkZW5jZSBvZiBtYWpvciBpbmZyYXN0cnVjdHVyZSBiaWFzZXMgYWdhaW5zdCBhY2FkZW1pYyBkaXNjaXBsaW5lcyBzZWVtaW5nbHkgInNvZnRlciIgb3IgbGVzcyB2YWx1ZWQgdGhhbiB0ZWNobmljYWwgZmllbGRzIHdpdGhpbiB0aGUgaW5zdGl0dXRpb25hbCB0ZWNobm9sb2d5IHN0YXR1cyBxdW8uIEFkZHJlc3NpbmcgZGVmaWNpZW5jaWVzIHVuY292ZXJlZCBzaG91bGQgY29uc3RpdHV0ZSBhbiB1cmdlbnQgcHJpb3JpdHkgZm9yIGVxdWl0YWJsZSBkaXN0cmlidXRpb24gb2YgY2FtcHVzIG5ldHdvcmsgcmVzb3VyY2VzIGJlbmVmaXRpbmcgYWxsIHN0dWRlbnRzLgoKIyMgSUkuIEV4cGVyaW1lbnRhbCBTZXR1cAoKYGBge3J9CiMgZ2V0IHRoZSBkaWZmZXJlY2UgYmV0d2VlbiBkb3dubG9hZCBhbmQgdXBsb2FkIHNwZWVkcyBmb3IgZWFjaCBidWlsZGluZwpyZXN1bHQgPC0KICBkYXRhLmZyYW1lKAogICAgZG93bmxvYWRfZGlmZiA9IGhhbnNvbl9kYXRhJGBEb3dubG9hZCBTcGVlZCAoTWJwcylgIC0gb2xkbWFpbl9kYXRhJGBEb3dubG9hZCBTcGVlZCAoTWJwcylgLAogICAgdXBsb2FkX2RpZmYgPSBoYW5zb25fZGF0YSRgVXBsb2FkIFNwZWVkIChNYnBzKWAgLSBvbGRtYWluX2RhdGEkYFVwbG9hZCBTcGVlZCAoTWJwcylgCiAgKQoKYGBgCgpIZXJlIGlzIGEgc3VtbWFyeSBvZiB0aGUgZGF0YToKCmBgYHtyfQpoX2Rvd25sb2FkX21lYW4gPSBtZWFuKGhhbnNvbl9kYXRhJGBEb3dubG9hZCBTcGVlZCAoTWJwcylgKQpoX3VwbG9hZF9tZWFuID0gbWVhbihoYW5zb25fZGF0YSRgVXBsb2FkIFNwZWVkIChNYnBzKWApCmhfZG93bmxvYWRfc2QgPSBzZChoYW5zb25fZGF0YSRgRG93bmxvYWQgU3BlZWQgKE1icHMpYCkKaF91cGxvYWRfc2QgPSBzZChoYW5zb25fZGF0YSRgVXBsb2FkIFNwZWVkIChNYnBzKWApCmBgYAoKYGBge3J9Cm9fZG93bmxvYWRfbWVhbiA9IG1lYW4ob2xkbWFpbl9kYXRhJGBEb3dubG9hZCBTcGVlZCAoTWJwcylgKQpoX3VwbG9hZF9tZWFuID0gbWVhbihvbGRtYWluX2RhdGEkYFVwbG9hZCBTcGVlZCAoTWJwcylgKQpvX2Rvd25sb2FkX3NkID0gc2Qob2xkbWFpbl9kYXRhJGBEb3dubG9hZCBTcGVlZCAoTWJwcylgKQpoX3VwbG9hZF9zZCA9IHNkKG9sZG1haW5fZGF0YSRgVXBsb2FkIFNwZWVkIChNYnBzKWApCmBgYAoKYGBge3J9CnN1bW1hcnkocmVzdWx0JGRvd25sb2FkX2RpZmYpCmBgYAoKYGBge3J9CnN1bW1hcnkocmVzdWx0JHVwbG9hZF9kaWZmKQpgYGAKCk5vdyB0byBnZXQgc29tZSBvZiB0aGUgc3RhdGlzdGljczoKCmBgYHtyfQpkb3dubG9hZF9zZCA8LSBzZChyZXN1bHQkZG93bmxvYWRfZGlmZikKZG93bmxvYWRfbWVhbiA8LSBtZWFuKHJlc3VsdCRkb3dubG9hZF9kaWZmKQoKdXBsb2FkX3NkIDwtIHNkKHJlc3VsdCR1cGxvYWRfZGlmZikKdXBsb2FkX21lYW4gPC0gbWVhbihyZXN1bHQkdXBsb2FkX2RpZmYpCgojdXNlIGdncGxvdDIKbGlicmFyeShnZ3Bsb3QyKQoKcGxvdF9kaXN0X2hpc3QgPC0gZnVuY3Rpb24obiwgbWVhbiwgc2QsIGJpbndpZHRoKSB7CiAgZGYgPC0gZGF0YS5mcmFtZSh4ID0gcm5vcm0obiwgbWVhbiwgc2QpKQogIGdncGxvdChkZiwgYWVzKAogICAgeCA9IHgsCiAgICBtZWFuID0gbWVhbiwKICAgIHNkID0gc2QsCiAgICBiaW53aWR0aCA9IGJpbndpZHRoLAogICAgbiA9IG4KICApKSArCiAgICB0aGVtZV9idygpICsKICAgIGdlb21faGlzdG9ncmFtKAogICAgICBiaW53aWR0aCA9IGJpbndpZHRoLAogICAgICBjb2xvdXIgPSAid2hpdGUiLAogICAgICBmaWxsID0gImNvcm5mbG93ZXJibHVlIiwKICAgICAgbGluZXdpZHRoID0gMC4xCiAgICApICsKICAgIHN0YXRfZnVuY3Rpb24oCiAgICAgIGZ1biA9IGZ1bmN0aW9uKHgpCiAgICAgICAgZG5vcm0oeCwgbWVhbiA9IG1lYW4sIHNkID0gc2QpICogbiAqIGJpbndpZHRoLAogICAgICBjb2xvciA9ICJkYXJrcmVkIiwKICAgICAgbGluZXdpZHRoID0gMQogICAgKSArIAogICAgdGhlbWUocGxvdC50aXRsZSA9IGVsZW1lbnRfdGV4dChoanVzdCA9IDAuNSkpIAp9Cm4gPSBucm93KHJlc3VsdCkKYmlud2lkdGggPSA2MCAjIHBhc3NlZCB0byBnZW9tX2hpc3RvZ3JhbSBhbmQgc3RhdF9mdW5jdGlvbgpzZXQuc2VlZCgxKQoKcGxvdF9kaXN0X2hpc3QobiwgZG93bmxvYWRfbWVhbiwgZG93bmxvYWRfc2QsIGJpbndpZHRoKSArIGxhYnModGl0bGUgPSAiUGxvdCBvZiBBdmVyYWdlICAgRG93bmxvYWQgU3BlZWQgRGlmZmVyZW5jZSBEaXN0cmlidXRpb24iLCB4ID0gIlNwZWVkIChNYnBzKSIsIHkgPSAiT2NjdXJhbmNlIikKCnBsb3RfZGlzdF9oaXN0KG4sIHVwbG9hZF9tZWFuLCB1cGxvYWRfc2QsIGJpbndpZHRoKSArIGxhYnModGl0bGUgPSAiUGxvdCBvZiBBdmVyYWdlIFVwbG9hZCBTcGVlZCBEaWZmZXJlbmNlIERpc3RyaWJ1dGlvbiIseCA9IlNwZWVkIChNYnBzKSIsIHkgPSAiT2NjdXJhbmNlIikKCmBgYAoKIyMgSUlJLiBSZXN1bHRzCgpMb3JlbQoKIyMgSVYuIERpc2N1c3Npb24KCkxvcmVtCgpUYWxrIGFib3V0IHRoZSBpbnRlcnZpZXcgd2l0aCBTY290dCBEZWFuIFwjIyBSZWZlcmVuY2VzCgpVc2luZyBJRUVFIFN0eWxlCg==</div>
 
 
 
