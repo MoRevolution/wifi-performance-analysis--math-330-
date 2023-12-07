@@ -76,7 +76,7 @@ stat_function(fun = function(x) dnorm(x, mean = mean, sd = sd) * n * binwidth,
     color = "darkred", linewidth = 1)
 }
 n = 16
-binwidth = 50 # passed to geom_histogram and stat_function
+binwidth = 60 # passed to geom_histogram and stat_function
 set.seed(1)
 
 
