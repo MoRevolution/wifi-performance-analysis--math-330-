@@ -17,9 +17,9 @@ hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
 ```
 
-$H_T$: There is no difference in average wifi speed between Old Main and Hanson
+$H_T$: There is no difference in average WI-FI speed between Old Main and Hanson.
 
-$H_A$: There is a difference in average wifi speed between Old Main and Hanson
+$H_A$: There is a difference in average WI-FI speed between Old Main and Hanson.
 
 $\alpha=0.05$
 
@@ -29,7 +29,7 @@ Lorem
 
 ## I. Introduction
 
-Reliable, high-speed internet access is an essential resource for today's college works and studies, where assignments, entertainment, socialization, and more has been migrated to online platforms such as Moodle and Google services. Yet not all students enjoy equal access to robust networks on Augustana College campuses. This inequality manifests itself glaringly in Wi-Fi infrastructure quality at academic buildings on campus. Through a comparative analysis of Wi-Fi speeds conducted between only two locations, our project aimed to test our claim about the inequality of the Wi-fi speed in science and humanities buildings.
+Reliable, high-speed internet access is an essential resource for today's college works and studies, where assignments, entertainment, socialization, and more has been migrated to online platforms such as Moodle and Google services. Yet not all students enjoy equal access to robust networks on Augustana College campuses. This inequality manifests itself glaringly in WI-Fi infrastructure quality at academic buildings on campus. Through a comparative analysis of WI-Fi speeds conducted between only two locations, our project aimed to test our claim about the inequality of the WI-fi speed in science and humanities buildings.
 
 Within a week period, our team performed Wi-Fi speed tests between morning to afternoon over two locations: one in Hanson Hall (science building) and one in Old Main Hall (humanities). We recorded download and upload speeds using Augustana home grown Internet Speed Test, averaging 32 test results from 2 spots within two buildings. Our central hypotheses were twofold: that average download speeds would prove significantly faster in STEM-focused Hanson versus Old Main, and upload speed also faster in Hanson than Old Main.
 
@@ -39,8 +39,11 @@ Our study provides compelling evidence of major infrastructure biases against ac
 
 ```{r}
 # get the differece between download and upload speeds for each building
-result <- data.frame(download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`, 
-                     upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`)
+result <-
+  data.frame(
+    download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
+    upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
+  )
 
 ```
 
@@ -66,22 +69,37 @@ upload_mean <- mean(result$upload_diff)
 #use ggplot2
 library(ggplot2)
 
-plot_dist_hist <- function(n,mean,sd,binwidth) {
+plot_dist_hist <- function(n, mean, sd, binwidth) {
   df <- data.frame(x = rnorm(n, mean, sd))
-  ggplot(df, aes(x = x, mean = mean, sd = sd, binwidth = binwidth, n = n)) +
+  ggplot(df, aes(
+    x = x,
+    mean = mean,
+    sd = sd,
+    binwidth = binwidth,
+    n = n
+  )) +
     theme_bw() +
-    geom_histogram(binwidth = binwidth, 
-        colour = "white", fill = "cornflowerblue", linewidth = 0.1) +
-stat_function(fun = function(x) dnorm(x, mean = mean, sd = sd) * n * binwidth,
-    color = "darkred", linewidth = 1)
+    geom_histogram(
+      binwidth = binwidth,
+      colour = "white",
+      fill = "cornflowerblue",
+      linewidth = 0.1
+    ) +
+    stat_function(
+      fun = function(x)
+        dnorm(x, mean = mean, sd = sd) * n * binwidth,
+      color = "darkred",
+      linewidth = 1
+    ) + 
+    theme(plot.title = element_text(hjust = 0.5)) 
 }
-n = 16
+n = nrow(result)
 binwidth = 60 # passed to geom_histogram and stat_function
 set.seed(1)
 
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
 
-plot_dist_hist(n, download_mean, download_sd, binwidth) + labs( title = "Plot of Average Download Speed Difference Distribution", x="Speed (Mbps)", y="Occurance")
-plot_dist_hist(n, upload_mean, upload_sd, binwidth)+ labs( title = "Plot of Average Upload Speed Difference Distribution", x="Speed (Mbps)", y="Occurance")
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
 
 ```
 
@@ -93,8 +111,6 @@ Lorem
 
 Lorem
 
-
-Talk about the interview with Scott Dean
-## References
+Talk about the interview with Scott Dean \## References
 
 Using IEEE Style
