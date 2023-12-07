@@ -38,7 +38,6 @@ Lorem
 result <- data.frame(download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`, 
                      upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`)
 
-head(result)
 ```
 
 Here is a summary of the data:
@@ -55,10 +54,31 @@ Now to get some of the statistics:
 
 ```{r}
 download_sd <- sd(result$download_diff)
-download_mean <- sd(result$download_diff)
+download_mean <- mean(result$download_diff)
 
 upload_sd <- sd(result$upload_diff)
-upload_mean <- sd(result$upload_diff)
+upload_mean <- mean(result$upload_diff)
+
+#use ggplot2
+library(ggplot2)
+
+plot_dist_hist <- function(n,mean,sd,binwidth) {
+  df <- data.frame(x = rnorm(n, mean, sd))
+  ggplot(df, aes(x = x, mean = mean, sd = sd, binwidth = binwidth, n = n)) +
+    theme_bw() +
+    geom_histogram(binwidth = binwidth, 
+        colour = "white", fill = "cornflowerblue", linewidth = 0.1) +
+stat_function(fun = function(x) dnorm(x, mean = mean, sd = sd) * n * binwidth,
+    color = "darkred", linewidth = 1)
+}
+n = 16
+binwidth = 50 # passed to geom_histogram and stat_function
+set.seed(1)
+
+
+plot_dist_hist(n, download_mean, download_sd, binwidth)
+plot_dist_hist(n, upload_mean, upload_sd, binwidth)
+
 ```
 
 ## III. Results
