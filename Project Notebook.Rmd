@@ -81,7 +81,6 @@ kable(oldmain_data[,c(2,4,5,6)], caption = "Data taken in Old Main Hall")
 
 
 ```{r}
-# get the differece between download and upload speeds for each building
 result <-
   data.frame(
     download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
@@ -89,7 +88,7 @@ result <-
   )
 
 
-head(result)
+kable(result, caption="The differece between download and upload speeds for each building")
 ```
 
 ```{r}
@@ -103,8 +102,11 @@ h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
 Hanson 
 
 $\bar{X}_{Hanson\;{download}} = `r h_download_mean`$
+
 $\bar{X}_{Hanson\;upload} = `r h_upload_mean`$
+
 $s_{Hanson\;download} = `r h_download_sd`$
+
 $s_{Hanson\;upload} = `r h_upload_sd`$
 
 ```{r}
