@@ -69,6 +69,8 @@ Figure 2: Old Main $2^{nd}$ floor map with 2.4GHz band signal heatmap overlay
 
 As we mentioned in the introduction, we collected data by using [speedtest.augustana.edu](speedtest.augustana.edu){.uri} on the second floor of each building: second floor rotunda in Hanson, and second floor central corridor in Old Main. This was done by running a speed test at each location around the time window for different times across the day: 10:30 AM, 1:30 PM, 3:00 PM, and 4:30 PM. The details for each data point are in this [Google Sheet](https://docs.google.com/spreadsheets/d/1y3OSnIxIV4QFOMzsykv9vPy7rWPIdvfd_vLXNGu6V1g/edit?usp=sharing).
 
+The full data parameters for each of our data point include: location, date, expected time (our recommended time interval for everyone in our group to be there and record), actual time (our actual time during the measurement), download speed (in Mbps), upload Speed (in Mbps), ping (in ms), jitter (in ms), device manufacture, and device model.
+
 The rest of this section shows summaries of our data and some samples of it.
 
 ```{r echo = FALSE, results = 'asis'}
