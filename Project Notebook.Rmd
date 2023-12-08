@@ -2,9 +2,9 @@
 title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
 author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r}
@@ -149,8 +149,16 @@ Lorem
 
 ## IV. Discussion
 
-Lorem
+The outcomes of our study do not substantiate a definitive causation due to the limitations within a small-scale experiment. Our network specialist, Scott D. Dean, shared insights into the campus internet infrastructure, focused on Old Main and Hanson buildings. Notably, Old Main recently underwent an upgrade in its Internet access points to align with those in Hanson, with the intent of minimizing variations in quality of the Wi-Fi signal strength. Despite these upgrades, Figures 1 and 2 revealed a notable disparity in the numbers of access points between the two buildings.
 
-Talk about the interview with Scott Dean \## References
+A potential confounding variable arises from the distinct number of access points in each building; Old Main's 1st floor has only 2 access points, while Hanson's 2nd floor boasts 6. This difference may contribute to the observed differences in Wi-Fi performance.
+
+Scott D. Dean emphasized a crucial aspect—namely, that an increased number of internet devices (clients) connected to an access point inside a building can lead to a decrease in Wi-Fi speed. This principle sheds light on the observed variations and prompts us to consider the impact of user load on the network.
+
+Taking into account the general class schedule, it is reasonable to infer that higher Wi-Fi demand on specific days, such as Monday, Wednesday, and Friday, could influence the observed differences in Wi-Fi speed. Moreover, the 2023 Fall Term received a higher number of freshmen FYI101 classes in Old Main, as opposed to Hanson, where classrooms are primarily reserved for foundation science classes, introduces another layer of complexity.
+
+In conclusion, while our study establishes a foundation for understanding the Internet speed between Old Main and Hanson, these confounding variables must be accounted in drawing a causal relationship. Further investigations are needed to well-explored the variations in Wi-Fi signal strength, potentially to address the differences of internet speed between a STEM building and a humanities building on Augustana College campus. 
+
+## References
 
 Using IEEE Style
