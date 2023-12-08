@@ -2,10 +2,10 @@
 title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
 author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
   pdf_document: default
->>>>>>> 31d7ca0ac9dce9c66da04e12d7a2108350e08e5a
 ---
 
 ```{r}
@@ -38,7 +38,6 @@ This study focuses on the comparative analysis of Wi-Fi infrastructure quality i
 Over the course of a week, our team conducted Wi-Fi speed tests from morning to afternoon at specific locations within Hanson Hall and Old Main Hall. Using the Augustana homegrown Internet Speed Test ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
 
 The findings presented in this report shed light on the observed variances in Wi-Fi speeds between these academic buildings. It's important to note that while our focus is on wireless speeds, we acknowledge that the potential inequality might not solely be a result of wireless infrastructure bias but could also be influenced by the physical layout and construction of the buildings. Additionally, it's crucial to clarify that our study specifically examines wireless speeds and does not encompass an analysis of wired speeds via an Ethernet port. This distinction is essential as the physical layout of the building, along with the choice of network connectivity, can impact the overall internet experience. Even more, the physical layout and construction of the building doesn't have as much of an effect, if any at all, on wired speeds.
->>>>>>> 31d7ca0ac9dce9c66da04e12d7a2108350e08e5a
 
 ## II. Experimental Setup
 
@@ -118,7 +117,7 @@ n = nrow(result)
 binwidth = 60 # passed to geom_histogram and stat_function
 set.seed(1)
 
-plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
 
 plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
 
