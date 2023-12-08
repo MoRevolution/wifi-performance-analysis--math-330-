@@ -1,6 +1,0 @@
-"0","# Degrees of freedom"
-"0","df <- (n - 1) * 2"
-"0",""
-"0","# Calculate the t-value for a 95% confidence interval"
-"0","t_value <- qt(0.975, df)"
-"0",""

@@ -1,6 +1,0 @@
-"0","# if not installed use: install.packages(""package_name"")"
-"0","suppressWarnings(library(readxl))"
-"0","suppressWarnings(library(psych))"
-"0",""
-"0","hanson_data= read_excel(""datasheet.xlsx"", sheet=""Hanson"")"
-"0","oldmain_data= read_excel(""datasheet.xlsx"", sheet=""Old Main"")"

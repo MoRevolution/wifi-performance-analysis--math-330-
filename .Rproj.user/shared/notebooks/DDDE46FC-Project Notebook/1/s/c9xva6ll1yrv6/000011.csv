@@ -1,3 +1,0 @@
-"0",""
-"0","plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = ""Plot of Average Upload Speed Difference Distribution"",x =""Speed (Mbps)"", y = ""Occurance"")"
-"0",""

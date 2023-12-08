@@ -1,7 +1,0 @@
-"0","# get the differece between download and upload speeds for each building"
-"0","result <-"
-"0","  data.frame("
-"0","    download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,"
-"0","    upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`"
-"0","  )"
-"0",""
