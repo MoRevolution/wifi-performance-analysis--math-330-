@@ -1,0 +1,353 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={R Notebook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{R Notebook}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\subsection{A Comparative Analysis of Wi-Fi Performance Between Science
+and Humanities Buildings: Evidence of Infrastructure Inequality on a
+College
+Campus}\label{a-comparative-analysis-of-wi-fi-performance-between-science-and-humanities-buildings-evidence-of-infrastructure-inequality-on-a-college-campus}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# if not installed use: install.packages("package\_name")}
+\FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{library}\NormalTok{(readxl))}
+\FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{library}\NormalTok{(psych))}
+
+\NormalTok{hanson\_data}\OtherTok{=} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"datasheet.xlsx"}\NormalTok{, }\AttributeTok{sheet=}\StringTok{"Hanson"}\NormalTok{)}
+\NormalTok{oldmain\_data}\OtherTok{=} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"datasheet.xlsx"}\NormalTok{, }\AttributeTok{sheet=}\StringTok{"Old Main"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\(H_T\): There is no difference in average WI-FI speed between Old Main
+and Hanson.
+
+\(H_A\): There is a difference in average WI-FI speed between Old Main
+and Hanson.
+
+\(\alpha=0.05\)
+
+\subsubsection{Abstract}\label{abstract}
+
+Lorem
+
+\subsection{I. Introduction}\label{i.-introduction}
+
+In today's academic landscape, reliable and high-speed internet access
+is crucial for various aspects of college life, including coursework,
+social interactions, and entertainment, all of which are increasingly
+reliant on online platforms such as Moodle and Google services. However,
+the accessibility and quality of internet networks across Augustana
+College campuses are not uniform, creating disparities among students.
+
+This study focuses on the comparative analysis of Wi-Fi infrastructure
+quality in two distinct buildings: Hanson Hall, representing the STEM
+disciplines, and Old Main Hall, associated with the humanities. Rather
+than assuming a preconceived bias regarding the superiority of Wi-Fi
+infrastructure in one building over the other, our objective is to
+explore potential differences in internet speeds and assess if there are
+grounds to support claims of inequality.
+
+Over the course of a week, our team conducted Wi-Fi speed tests from
+morning to afternoon at specific locations within Hanson Hall and Old
+Main Hall. Using the Augustana homegrown Internet Speed Test
+(\url{speedtest.augustana.edu}), we gathered data on download and upload
+speeds, providing 16 data points for each location in the two buildings.
+Our hypothesis centers on investigating whether average download speeds
+in either Hanson Hall or Old Main significantly surpass the download
+speeds in the other, and if upload speeds exhibit a similar trend.
+
+The findings presented in this report shed light on the observed
+variances in Wi-Fi speeds between these academic buildings. It's
+important to note that while our focus is on wireless speeds, we
+acknowledge that the potential inequality might not solely be a result
+of wireless infrastructure bias but could also be influenced by the
+physical layout and construction of the buildings. Additionally, it's
+crucial to clarify that our study specifically examines wireless speeds
+and does not encompass an analysis of wired speeds via an Ethernet port.
+This distinction is essential as the physical layout of the building,
+along with the choice of network connectivity, can impact the overall
+internet experience. Even more, the physical layout and construction of
+the building doesn't have as much of an effect, if any at all, on wired
+speeds.
+
+\subsection{II. Experimental Setup}\label{ii.-experimental-setup}
+
+Before diving into our methodology for data collection and our analysis,
+we feel it's necessary to provide contextual foundation for our study by
+taking a closer look at the wireless infrastructure in each building.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# get the differece between download and upload speeds for each building}
+\NormalTok{result }\OtherTok{\textless{}{-}}
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{download\_diff =}\NormalTok{ hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}}\NormalTok{ oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{,}
+    \AttributeTok{upload\_diff =}\NormalTok{ hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}}\NormalTok{ oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Here is a summary of the data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{h\_download\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{h\_upload\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{h\_download\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{h\_upload\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(hanson\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Hanson \[\bar{X}_{Hanson\;{download}} = 82.935\]
+\[\bar{X}_{Hanson\;upload} = 83.380625\]
+\[s_{Hanson\;download} = 75.7139672\]
+\[s_{Hanson\;upload} = 66.8327555\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{o\_download\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{o\_upload\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{o\_download\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Download Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{o\_upload\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(oldmain\_data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Upload Speed (Mbps)}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Old Main \[\bar{X}_{OldMain\;download} = 60.1025\]
+\[\bar{X}_{OldMain\; upload} = 73.74125\]
+\[s_{OldMain\; download} = 93.8963707\]
+\[s_{OldMain\; upload} = 107.4404898\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{download\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{download\_diff)}
+\NormalTok{download\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{download\_diff)}
+
+\NormalTok{upload\_sd }\OtherTok{=} \FunctionTok{sd}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{upload\_diff)}
+\NormalTok{upload\_mean }\OtherTok{=} \FunctionTok{mean}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{upload\_diff)}
+\end{Highlighting}
+\end{Shaded}
+
+DIFF \[\bar{X}_{DIFF \;download} = 22.8325\]
+\[\bar{X}_{DIFF \; upload} = 9.639375\]
+\[s_{DIFF \; download} = 68.6649584\]
+\[s_{DIFF \; upload} = 67.4312574\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{download\_diff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -128.100   -5.525   30.460   22.832   58.157  139.520
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{upload\_diff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -157.000   -2.600   14.485    9.639   42.305  128.400
+\end{verbatim}
+
+Now to get some of the statistics:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{download\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{download\_diff)}
+\NormalTok{download\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{download\_diff)}
+
+\NormalTok{upload\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{upload\_diff)}
+\NormalTok{upload\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{upload\_diff)}
+
+\CommentTok{\#use ggplot2}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'ggplot2'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:psych':
+## 
+##     %+%, alpha
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot\_dist\_hist }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, mean, sd, binwidth) \{}
+\NormalTok{  df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{rnorm}\NormalTok{(n, mean, sd))}
+  \FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ x,}
+    \AttributeTok{mean =}\NormalTok{ mean,}
+    \AttributeTok{sd =}\NormalTok{ sd,}
+    \AttributeTok{binwidth =}\NormalTok{ binwidth,}
+    \AttributeTok{n =}\NormalTok{ n}
+\NormalTok{  )) }\SpecialCharTok{+}
+    \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_histogram}\NormalTok{(}
+      \AttributeTok{binwidth =}\NormalTok{ binwidth,}
+      \AttributeTok{colour =} \StringTok{"white"}\NormalTok{,}
+      \AttributeTok{fill =} \StringTok{"cornflowerblue"}\NormalTok{,}
+      \AttributeTok{linewidth =} \FloatTok{0.1}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{stat\_function}\NormalTok{(}
+      \AttributeTok{fun =} \ControlFlowTok{function}\NormalTok{(x)}
+        \FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =}\NormalTok{ mean, }\AttributeTok{sd =}\NormalTok{ sd) }\SpecialCharTok{*}\NormalTok{ n }\SpecialCharTok{*}\NormalTok{ binwidth,}
+      \AttributeTok{color =} \StringTok{"darkred"}\NormalTok{,}
+      \AttributeTok{linewidth =} \DecValTok{1}
+\NormalTok{    ) }\SpecialCharTok{+} 
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }
+\NormalTok{\}}
+\NormalTok{n }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(result)}
+\NormalTok{binwidth }\OtherTok{=} \DecValTok{60} \CommentTok{\# passed to geom\_histogram and stat\_function}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\FunctionTok{plot\_dist\_hist}\NormalTok{(n, download\_mean, download\_sd, binwidth) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Plot of Average   Download Speed Difference Distribution"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Speed (Mbps)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Occurance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-Notebook_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_dist\_hist}\NormalTok{(n, upload\_mean, upload\_sd, binwidth) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Plot of Average Upload Speed Difference Distribution"}\NormalTok{,}\AttributeTok{x =}\StringTok{"Speed (Mbps)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Occurance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Project-Notebook_files/figure-latex/unnamed-chunk-8-2.pdf}
+
+\[
+\begin{equation}
+P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)
+\end{equation}
+\] \#\# III. Results
+
+Lorem
+
+\subsection{IV. Discussion}\label{iv.-discussion}
+
+Lorem
+
+Talk about the interview with Scott Dean \#\# References
+
+Using IEEE Style
+
+\end{document}
