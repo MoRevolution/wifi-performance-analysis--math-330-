@@ -235,6 +235,10 @@ if (download_upper.bound < download_lower.bound)
 }
 ```
 
+```{r echo = FALSE}
+box_plt <- ggplot(result)
+box_plt + geom_boxplot(aes(x="Download Speed Difference", y=download_diff)) + geom_boxplot(aes(x="Upload Speed Difference", y=upload_diff)) + geom_point(aes(x = "Download Speed Difference", y = download_diff), position = position_jitter(width = 0.1), alpha = 0.5) + geom_point(aes(x = "Upload Speed Difference", y = upload_diff),position = position_jitter(width = 0.1), alpha = 0.5) + labs(title = "Box Plot of Download & Upload Speed Difference with 95% Confidence Level", x = "", y = "Speed (Mbps)")
+```
 
 ## III. Results
 
