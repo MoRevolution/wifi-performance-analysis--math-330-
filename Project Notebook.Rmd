@@ -163,10 +163,11 @@ plot_dist_hist <- function(n, mean, sd, binwidth) {
     theme(plot.title = element_text(hjust = 0.5)) 
 }
 n = nrow(result)
-binwidth = 60
+binwidth = 20
 set.seed(1)
 ```
 $$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
+
 #### Hypothesis Test for download speeds 
 ```{r}
 download_sd <- sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
