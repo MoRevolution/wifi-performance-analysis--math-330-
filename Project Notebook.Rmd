@@ -1,9 +1,9 @@
 ---
 title: "R Notebook"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
@@ -31,15 +31,45 @@ Lorem
 
 In today's academic landscape, reliable and high-speed internet access is crucial for various aspects of college life, including coursework, social interactions, and entertainment, all of which are increasingly reliant on online platforms such as Moodle and Google services. However, the accessibility and quality of internet networks across Augustana College campuses are not uniform, creating disparities among students.
 
-This study focuses on the comparative analysis of Wi-Fi infrastructure quality in two distinct buildings: Hanson Hall, representing the STEM disciplines, and Old Main Hall, associated with the humanities. Rather than assuming a preconceived bias regarding the superiority of Wi-Fi infrastructure in one building over the other, our objective is to explore potential differences in internet speeds and assess if there are grounds to support claims of inequality.
+This study focuses on the comparative analysis of Wi-Fi infrastructure quality in two distinct buildings: Hanson Hall, representing the STEM disciplines, and Old Main Hall, associated with the humanities. Rather than assuming a preconceived bias regarding the superiority of Wi-Fi infrastructure in one building over the other, our objective is to explore potential differences in internet speeds and assess if there are grounds to support claims of inequality. To ensure a well informed investigation, we sought the expertise of Scott Dean, the Network Manager for Augustana College. In his role, Scott oversees all network infrastructure on campus and is also involved in cyber security for the network.
 
-Over the course of a week, our team conducted Wi-Fi speed tests from morning to afternoon at specific locations within Hanson Hall and Old Main Hall. Using the Augustana homegrown Internet Speed Test ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
+Over the course of a week, our team conducted Wi-Fi speed tests from morning(10:25 AM) to afternoon (4:45 PM) at specific locations within Hanson Hall and Old Main Hall: the Old Main second floor central corridor (Figure 2), and the Hanson Rotunda on the second floor (Figure 1). Using the Augustana's homegrown Internet Speed Test tool ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
 
 The findings presented in this report shed light on the observed variances in Wi-Fi speeds between these academic buildings. It's important to note that while our focus is on wireless speeds, we acknowledge that the potential inequality might not solely be a result of wireless infrastructure bias but could also be influenced by the physical layout and construction of the buildings. Additionally, it's crucial to clarify that our study specifically examines wireless speeds and does not encompass an analysis of wired speeds via an Ethernet port. This distinction is essential as the physical layout of the building, along with the choice of network connectivity, can impact the overall internet experience. Even more, the physical layout and construction of the building doesn't have as much of an effect, if any at all, on wired speeds.
 
 ## II. Experimental Setup
 
 Before diving into our methodology for data collection and our analysis, we feel it's necessary to provide contextual foundation for our study by taking a closer look at the wireless infrastructure in each building.
+
+### a. Building Construction and WiFi Infrastructure
+
+Starting with Hanson Hall (shown in Figure 1), the first thing to notice is that the building is quite long as compared to other buildings and not wide. Most classrooms in the building are along the hallway in the center of the buildings with a few others on the left along Lecture Hall 1 (Room 102) and right side by the new extension. Thus, to get maximum coverage, the [Access Points](https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/what-is-access-point.html) (fancy word for routers) need to be distributed linearly across the length of the building while also covering areas like the second floor Rotunda and the new extension.
+
+![](media/hanson_2-transformed.png "Hanson 2_nd Floor")
+
+Figure 1: Hanson Hall $2^{nd}$ floor floor map with 2.4GHz band signal heatmap overlay
+
+Figure 1 is a floor plan of the second floor with a signal heatmap overlay for the 2.4GHz band (more details on signal bands [here](https://kb.netgear.com/000064790/What-are-WiFi-bands-and-how-many-do-I-need-for-my-network)). The heatmap visually illustrates wireless signal strength in a designated area, with the color gradients depicting varying intensities. Green or blue hues signify average to low signal strength (-50dBm to -100dBm), while red or yellow indicate above average to good signal strength (-20dBm to -50dBm). Although the picture focuses on the 2.4 GHz band, all Access Points (APs) on campus are dual band and support both 2.4GHz and 5GHz. The distinction between these bands lies in the fact that the lower frequency band provides extensive WiFi coverage but at slower speeds, while the higher band offers less coverage but faster data transmission. Additional information on wireless frequencies can be found [here](https://kb.netgear.com/29396/What-is-the-difference-between-2-4-GHz-5-GHz-and-6-GHz-wireless-frequencies). Each blue icon featuring a WiFi symbol on the map represents an AP, and it's noteworthy that the layout and distribution of routers remain consistent across all floors of the building.
+
+Although the overall structure of Old Main (Figure 2) is similar to Hanson, just slightly wider, the biggest difference between the two buildings lies in the distribution of Access Points - Hanson clearly has a lot more per floor as compared to Old Main. We will expand on how this distinction affects our hypothesis and overall experiment in the discussion section.
+
+![](media/oldmain-transformed.png)
+
+Figure 2: Old Main $2^{nd}$ floor map with 2.4GHz band signal heatmap overlay
+
+### b. Data Collection
+
+As we mentioned in the introduction, we collected data by using [speedtest.augustana.edu](speedtest.augustana.edu){.uri} on the second floor of each building: second floor rotunda in Hanson, and second floor central corridor in Old Main. This was done by running a speed test at each location around the time window for different times across the day: 10:30 AM, 1:30 PM, 3:00 PM, and 4:30 PM. The details for each data point are in this [Google Sheet](https://docs.google.com/spreadsheets/d/1y3OSnIxIV4QFOMzsykv9vPy7rWPIdvfd_vLXNGu6V1g/edit?usp=sharing).
+
+The rest of this section shows summaries of our data and some samples of it.
+
+```{r}
+head(hanson_data)
+```
+
+```{r}
+head(oldmain_data)
+```
 
 ```{r}
 # get the differece between download and upload speeds for each building
@@ -49,9 +79,8 @@ result <-
     upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
   )
 
+head(result)
 ```
-
-Here is a summary of the data:
 
 ```{r}
 h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
@@ -59,11 +88,8 @@ h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
 h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
 h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
 ```
-Hanson
-$$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$
-$$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$
-$$s_{Hanson\;download} = `r h_download_sd`$$
-$$s_{Hanson\;upload} = `r h_upload_sd`$$
+
+Hanson $$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$ $$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$ $$s_{Hanson\;download} = `r h_download_sd`$$ $$s_{Hanson\;upload} = `r h_upload_sd`$$
 
 ```{r}
 o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
@@ -71,11 +97,11 @@ o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
 o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
 o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
 ```
+
 Old Main
-$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$
-$$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$
-$$s_{OldMain\; download} = `r o_download_sd`$$
-$$s_{OldMain\; upload} = `r o_upload_sd`$$
+
+$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$ $$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$ $$s_{OldMain\; download} = `r o_download_sd`$$ $$s_{OldMain\; upload} = `r o_upload_sd`$$
+
 ```{r}
 download_sd = sd(result$download_diff)
 download_mean = mean(result$download_diff)
@@ -83,11 +109,8 @@ download_mean = mean(result$download_diff)
 upload_sd = sd(result$upload_diff)
 upload_mean = mean(result$upload_diff)
 ```
-DIFF
-$$\bar{X}_{DIFF \;download} = `r download_mean`$$
-$$\bar{X}_{DIFF \; upload} = `r upload_mean`$$
-$$s_{DIFF \; download} = `r download_sd`$$
-$$s_{DIFF \; upload} = `r upload_sd`$$
+
+DIFF $$\bar{X}_{DIFF \;download} = `r download_mean`$$ $$\bar{X}_{DIFF \; upload} = `r upload_mean`$$ $$s_{DIFF \; download} = `r download_sd`$$ $$s_{DIFF \; upload} = `r upload_sd`$$
 
 ```{r}
 summary(result$download_diff)
