@@ -91,11 +91,24 @@ result <-
 kable(result, caption="The differece between download and upload speeds for each building")
 ```
 
-```{r}
+```{r echo = FALSE}
+# Hanson stats
 h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
 h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
 h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
 h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
+# Old Main stats
+o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
+o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
+o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
+o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
+# Difference download speed between building stats 
+download_sd = sd(result$download_diff)
+download_mean = mean(result$download_diff)
+# Difference upload speed between building stats 
+upload_sd = sd(result$upload_diff)
+upload_mean = mean(result$upload_diff)
+
 ```
 
 
@@ -109,13 +122,6 @@ $s_{Hanson\;download} = `r h_download_sd`$
 
 $s_{Hanson\;upload} = `r h_upload_sd`$
 
-```{r}
-o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
-o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
-o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
-o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
-```
-
 Old Main
 
 $\bar{X}_{OldMain\;download} = `r o_download_mean`$
@@ -126,15 +132,9 @@ $s_{OldMain\; download} = `r o_download_sd`$
 
 $s_{OldMain\; upload} = `r o_upload_sd`$
 
-```{r}
-download_sd = sd(result$download_diff)
-download_mean = mean(result$download_diff)
 
-upload_sd = sd(result$upload_diff)
-upload_mean = mean(result$upload_diff)
-```
-
-DIFF $$\bar{X}_{DIFF \;download} = `r download_mean`$$ $$\bar{X}_{DIFF \; upload} = `r upload_mean`$$ $$s_{DIFF \; download} = `r download_sd`$$ $$s_{DIFF \; upload} = `r upload_sd`$$
+DIFF 
+$$\bar{X}_{DIFF \;download} = `r download_mean`$$ $$\bar{X}_{DIFF \; upload} = `r upload_mean`$$ $$s_{DIFF \; download} = `r download_sd`$$ $$s_{DIFF \; upload} = `r upload_sd`$$
 
 
 ```{r}
