@@ -1,6 +1,9 @@
 ---
 title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
 author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}
 output:
   html_document:
     df_print: paged
@@ -44,10 +47,6 @@ The findings presented in this report shed light on the observed variances in Wi
 ## II. Experimental Setup
 
 Before diving into our methodology for data collection and our analysis, we feel it's necessary to provide contextual foundation for our study by taking a closer look at the wireless infrastructure in each building.
-```{r echo = FALSE, results = 'asis'}
-library(knitr)
-kable(hanson_data[,c(2,4,5,6)], caption = "Data taken in Hanson Hall of Science", "latex")
-```
 
 ### a. Building Construction and WiFi Infrastructure
 
@@ -71,13 +70,12 @@ As we mentioned in the introduction, we collected data by using [speedtest.augus
 
 The rest of this section shows summaries of our data and some samples of it.
 
-```{r}
-head(hanson_data)
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(hanson_data[,c(2,4,5,6)], caption = "Data taken in Hanson Hall of Science", "latex")
+kable(oldmain_data[,c(2,4,5,6)], caption = "Data taken in Old Main Hall", "latex")
 ```
 
-```{r}
-head(oldmain_data)
-```
 
 ```{r}
 # get the differece between download and upload speeds for each building
@@ -86,6 +84,7 @@ result <-
     download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
     upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
   )
+
 
 head(result)
 ```
@@ -166,39 +165,31 @@ plot_dist_hist <- function(n, mean, sd, binwidth) {
 n = nrow(result)
 binwidth = 60
 set.seed(1)
-
-plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
-
-plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
-
 ```
 $$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
-
+#### Hypothesis Test for download speeds 
 ```{r}
-download_n <- length(result$download_diff)
-download_sd <- sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
-download_t.value = download_mean/sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
-alpha = 0.05
-download_df = download_n - 1
-download_p_val = 2*(1 - pt(download_t.value,download_df))
+download_sd <- sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
+download_t.value = download_mean/download_sd
+download_p_val = 2*(1 - pt(download_t.value, n-1))
 print(download_p_val)
 ```
-
+#### Hypothesis Test for upload speeds
 ```{r}
-upload_n <- length(result$upload_diff)
-upload_t.value = upload_mean/sqrt((h_upload_sd^2/upload_n)+(o_upload_sd^2/upload_n))
-alpha = 0.05
-upload_df = upload_n - 1
-upload_p_val = 2*(1 - pt(upload_t.value,upload_df))
+upload_sd <- sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n))
+upload_t.value = upload_mean/upload_sd
+upload_p_val = 2*(1 - pt(upload_t.value,n-1))
 print(upload_p_val)
 ```
 
+#### Confidence interval for true download speed population mean 
 ```{r}
-h_download_t.score = qt(p=alpha/2, df=download_df)
-h_download_se = h_download_sd/sqrt(download_n)
+h_download_t.score = qt(p=0.025, df= n-1)
+h_download_se = h_download_sd/sqrt(n)
 h_download_margin.error <- h_download_t.score * h_download_se
 h_download_lower.bound <- h_download_mean - h_download_margin.error
 h_download_upper.bound <- h_download_mean + h_download_margin.error
+
 if (h_download_upper.bound < h_download_lower.bound)
 {
   print(c(h_download_upper.bound,h_download_lower.bound))
@@ -206,10 +197,10 @@ if (h_download_upper.bound < h_download_lower.bound)
   print(c(h_download_lower.bound,h_download_upper.bound))
 }
 ```
-
+#### Confidence interval for true upload speed population mean 
 ```{r}
-o_download_t.score = qt(p=alpha/2, df=download_df)
-o_download_se = o_download_sd/sqrt(download_n)
+o_download_t.score = qt(p=0.025, df=n-1)
+o_download_se = o_download_sd/sqrt(n)
 o_download_margin.error <- o_download_t.score * o_download_se
 o_download_lower.bound <- o_download_mean - o_download_margin.error
 o_download_upper.bound <- o_download_mean + o_download_margin.error
@@ -222,9 +213,9 @@ if (o_download_upper.bound < o_download_lower.bound)
 ```
 
 ```{r}
-download_t.score = qt(p=alpha/2, df=download_df)
+download_t.score = qt(p=0.025, df=n-1)
 
-download_margin.error <- download_t.score * sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
+download_margin.error <- download_t.score * sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
 download_lower.bound <- download_mean - download_margin.error
 download_upper.bound <- download_mean + download_margin.error
 if (download_upper.bound < download_lower.bound)
@@ -240,127 +231,46 @@ $$P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2
 
 ## III. Results
 
-```{r}
-# Given data
-n <- 16  # Sample size for each building
-h_download_mean <- mean(hanson_data$`Download Speed (Mbps)`)
-o_download_mean <- mean(oldmain_data$`Download Speed (Mbps)`)
-h_download_sd <-  sd(hanson_data$`Download Speed (Mbps)`)
-o_download_sd <- sd(oldmain_data$`Download Speed (Mbps)`)
+```{r echo = FALSE, figures-side, fig.show="hold", out.width="50%"}
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
 ```
-
-$Calculation of Mean Difference and Standard Deviation$ The mean
-difference and the standard deviation of the difference in download
+The mean difference and the standard deviation of the difference in download
 speeds are calculated as follows:
 
-```{r}
-# Calculate the mean and standard deviation of the difference in download speeds
-o_mean_diff <- h_download_mean - o_download_mean
-o_sd_diff <- sqrt((h_download_sd^2 / n) + (o_download_sd^2 / n))
-o_mean_diff
-```
-
-$mean_diff$ = 22.8325 $sd_diff$ = 30.15495
-
-##Statistical Testing of Mean Difference of Download Speeds To test the
-significance of the difference, we calculate the t-statistic and the
-corresponding p-value:
-
-```{r}
-t_statistic <- o_mean_diff / o_sd_diff
-df <- n - 1  # Degrees of freedom
-
-# Calculate the p-value
-p_value <- 2 * (1- pt(t_statistic,df))
-p_value
-```
+$\bar{X}_{diff}$ = 22.832, $S_diff$ = 68.6649584
 
 $p_(value)$ = 0.4606757
 
-##Meaning of P_value The p-value of 0.4606757 is greater than the
+The p-value of 0.4606757 is greater than the
 significance level of 0.05. This indicates that the observed difference
 in WiFi speeds between Hanson Hall and Old Main Hall is not
 statistically significant at the 5% significance level. Hence we accept
 the null hypothesis.
-
-###To calculate the 95% confidence interval for the difference between
-the true means of download speeds from Hanson Hall and Old Main Hall\$:
-
-```{r}
-
-# Calculate the t-value for a 95% confidence interval
-t_value <- qt(0.975, df)
-
-```
-
-###Calculate the confidence interval for mean difference of download
-speeds.
-
-```{r}
-# Calculate the margin of error
-margin_error <- t_value * sd_diff
-
-# Calculate the confidence interval
-ci_lower <- o_mean_diff - margin_error
-ci_upper <- o_mean_diff + margin_error
-
-# Output the confidence interval
-list(lower_bound = ci_lower, upper_bound = ci_upper)
-ci_lower
-ci_upper
-```
 
 The 95% confidence interval for the difference in mean download speeds
 between Hanson Hall and Old Main Hall, given as approximately
 [-41.44125, 87.10625] Mbps.
 
-##Statistical Testing of Mean Difference of Upload Speeds To test the
+Statistical Testing of Mean Difference of Upload Speeds To test the
 significance of the difference, we calculate the t-statistic and the
 corresponding p-value:
 
-```{r}
-u_mean_diff <- h_upload_mean - o_upload_mean
-u_sd_diff <- sqrt((h_upload_sd^2 / n) + (o_upload_sd^2 / n))
-t_statistic <- u_mean_diff / u_sd_diff
-df <- n - 1  # Degrees of freedom
-
-# Calculate the p-value
-p_value <- 2 * (1- pt(t_statistic,df))
-p_value
-```
+$\bar{X}_{diff}$ = 9.639, $S_diff$ = 67.4312574
 
 $p_(value)$ = 0.7647606
 
-##Meaning of P_value The p-value of 0.7647606 is greater than the
+Meaning of P_value The p-value of 0.7647606 is greater than the
 significance level of 0.05. This indicates that the observed difference
 in WiFi speeds between Hanson Hall and Old Main Hall is not
 statistically significant at the 5% significance level. Hence we accept
 the null hypothesis.
 
-###To calculate the 95% confidence interval for the difference between
-the true means of upload speeds from Hanson Hall and Old Main Hall:
-
-```{r}
-
-# Calculate the t-value for a 95% confidence interval
-t_value <- qt(0.975, df)
-
-# Calculate the margin of error
-margin_error <- t_value * u_sd_diff
-
-# Calculate the confidence interval
-ci_lower <- u_mean_diff - margin_error
-ci_upper <- u_mean_diff + margin_error
-
-# Output the confidence interval
-list(lower_bound = ci_lower, upper_bound = ci_upper)
-ci_lower
-ci_upper
-```
-
 The 95% confidence interval for the difference in mean download speeds
 between Hanson Hall and Old Main Hall, given as approximately [-57.7842,
-77.06295] Mbps. \## IV. Discussion
+77.06295] Mbps. 
+
+## IV. Discussion
 
 The outcomes of our study do not substantiate a definitive causation due to the limitations within a small-scale experiment. Our network specialist, Scott D. Dean, shared insights into the campus internet infrastructure, focused on Old Main and Hanson buildings. Notably, Old Main recently underwent an upgrade in its Internet access points to align with those in Hanson, with the intent of minimizing variations in quality of the Wi-Fi signal strength. Despite these upgrades, Figures 1 and 2 revealed a notable disparity in the numbers of access points between the two buildings.
 

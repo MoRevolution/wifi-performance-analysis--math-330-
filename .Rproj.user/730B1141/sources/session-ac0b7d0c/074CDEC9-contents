@@ -1,0 +1,219 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
+
+```{r}
+# if not installed use: install.packages("package_name")
+suppressWarnings(library(readxl))
+suppressWarnings(library(psych))
+
+hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
+oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
+```
+
+$H_T$: There is no difference in average WI-FI speed between Old Main and Hanson.
+
+$H_A$: There is a difference in average WI-FI speed between Old Main and Hanson.
+
+$\alpha=0.05$
+
+### Abstract
+
+Lorem
+
+## I. Introduction
+
+In today's academic landscape, reliable and high-speed internet access is crucial for various aspects of college life, including coursework, social interactions, and entertainment, all of which are increasingly reliant on online platforms such as Moodle and Google services. However, the accessibility and quality of internet networks across Augustana College campuses are not uniform, creating disparities among students.
+
+This study focuses on the comparative analysis of Wi-Fi infrastructure quality in two distinct buildings: Hanson Hall, representing the STEM disciplines, and Old Main Hall, associated with the humanities. Rather than assuming a preconceived bias regarding the superiority of Wi-Fi infrastructure in one building over the other, our objective is to explore potential differences in internet speeds and assess if there are grounds to support claims of inequality.
+
+Over the course of a week, our team conducted Wi-Fi speed tests from morning to afternoon at specific locations within Hanson Hall and Old Main Hall. Using the Augustana homegrown Internet Speed Test ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
+
+The findings presented in this report shed light on the observed variances in Wi-Fi speeds between these academic buildings. It's important to note that while our focus is on wireless speeds, we acknowledge that the potential inequality might not solely be a result of wireless infrastructure bias but could also be influenced by the physical layout and construction of the buildings. Additionally, it's crucial to clarify that our study specifically examines wireless speeds and does not encompass an analysis of wired speeds via an Ethernet port. This distinction is essential as the physical layout of the building, along with the choice of network connectivity, can impact the overall internet experience. Even more, the physical layout and construction of the building doesn't have as much of an effect, if any at all, on wired speeds.
+
+## II. Experimental Setup
+
+Before diving into our methodology for data collection and our analysis, we feel it's necessary to provide contextual foundation for our study by taking a closer look at the wireless infrastructure in each building.
+
+```{r}
+# get the differece between download and upload speeds for each building
+result <-
+  data.frame(
+    download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
+    upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
+  )
+
+```
+
+Here is a summary of the data:
+
+```{r}
+h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
+h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
+h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
+h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
+```
+Hanson
+$$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$
+$$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$
+$$s_{Hanson\;download} = `r h_download_sd`$$
+$$s_{Hanson\;upload} = `r h_upload_sd`$$
+
+```{r}
+o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
+o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
+o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
+o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
+```
+Old Main
+$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$
+$$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$
+$$s_{OldMain\; download} = `r o_download_sd`$$
+$$s_{OldMain\; upload} = `r o_upload_sd`$$
+```{r}
+download_sd = sd(result$download_diff)
+download_mean = mean(result$download_diff)
+
+upload_sd = sd(result$upload_diff)
+upload_mean = mean(result$upload_diff)
+```
+DIFF
+$$\bar{X}_{DIFF \;download} = `r download_mean`$$
+$$\bar{X}_{DIFF \; upload} = `r upload_mean`$$
+$$s_{DIFF \; download} = `r download_sd`$$
+$$s_{DIFF \; upload} = `r upload_sd`$$
+
+```{r}
+summary(result$download_diff)
+```
+
+```{r}
+summary(result$upload_diff)
+```
+
+Now to get some of the statistics:
+
+```{r}
+download_sd <- sd(result$download_diff)
+download_mean <- mean(result$download_diff)
+
+upload_sd <- sd(result$upload_diff)
+upload_mean <- mean(result$upload_diff)
+
+#use ggplot2
+library(ggplot2)
+
+plot_dist_hist <- function(n, mean, sd, binwidth) {
+  df <- data.frame(x = rnorm(n, mean, sd))
+  ggplot(df, aes(
+    x = x,
+    mean = mean,
+    sd = sd,
+    binwidth = binwidth,
+    n = n
+  )) +
+    theme_bw() +
+    geom_histogram(
+      binwidth = binwidth,
+      colour = "white",
+      fill = "cornflowerblue",
+      linewidth = 0.1
+    ) +
+    stat_function(
+      fun = function(x)
+        dnorm(x, mean = mean, sd = sd) * n * binwidth,
+      color = "darkred",
+      linewidth = 1
+    ) + 
+    theme(plot.title = element_text(hjust = 0.5)) 
+}
+n = nrow(result)
+binwidth = 60 # passed to geom_histogram and stat_function
+set.seed(1)
+
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
+
+```
+
+```{r}
+download_n <- length(result$download_diff)
+download_sd <- sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
+download_t.value = download_mean/sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
+alpha = 0.05
+download_df = download_n - 1
+download_p_val = 2*(1 - pt(download_t.value,download_df))
+print(download_p_val)
+```
+
+```{r}
+upload_n <- length(result$upload_diff)
+upload_t.value = upload_mean/sqrt((h_upload_sd^2/upload_n)+(o_upload_sd^2/upload_n))
+alpha = 0.05
+upload_df = upload_n - 1
+upload_p_val = 2*(1 - pt(upload_t.value,upload_df))
+print(upload_p_val)
+```
+
+```{r}
+h_download_t.score = qt(p=alpha/2, df=download_df)
+h_download_se = h_download_sd/sqrt(download_n)
+h_download_margin.error <- h_download_t.score * h_download_se
+h_download_lower.bound <- h_download_mean - h_download_margin.error
+h_download_upper.bound <- h_download_mean + h_download_margin.error
+if (h_download_upper.bound < h_download_lower.bound)
+{
+  print(c(h_download_upper.bound,h_download_lower.bound))
+}else {
+  print(c(h_download_lower.bound,h_download_upper.bound))
+}
+```
+
+```{r}
+o_download_t.score = qt(p=alpha/2, df=download_df)
+o_download_se = o_download_sd/sqrt(download_n)
+o_download_margin.error <- o_download_t.score * o_download_se
+o_download_lower.bound <- o_download_mean - o_download_margin.error
+o_download_upper.bound <- o_download_mean + o_download_margin.error
+if (o_download_upper.bound < o_download_lower.bound)
+{
+  print(c(o_download_upper.bound,o_download_lower.bound))
+}else {
+  print(c(o_download_lower.bound,o_download_upper.bound))
+}
+```
+
+```{r}
+download_t.score = qt(p=alpha/2, df=download_df)
+
+download_margin.error <- download_t.score * sqrt((h_download_sd^2/download_n)+(o_download_sd^2/download_n))
+download_lower.bound <- download_mean - download_margin.error
+download_upper.bound <- download_mean + download_margin.error
+if (download_upper.bound < download_lower.bound)
+{
+  print(c(download_upper.bound,download_lower.bound))
+}else {
+  print(c(download_lower.bound,download_upper.bound))
+}
+```
+
+
+
+## III. Results
+
+Lorem
+
+## IV. Discussion
+
+Lorem
+
+Talk about the interview with Scott Dean \## References
+
+Using IEEE Style
