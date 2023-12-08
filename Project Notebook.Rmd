@@ -186,8 +186,7 @@ $$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_
 #### Hypothesis Test for download speeds 
 
 ```{r}
-download_sd <- sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
-download_t.value = download_mean/download_sd
+download_t.value = download_mean/(sqrt((h_download_sd^2/n)+(o_download_sd^2/n)))
 download_p_val = 2*(1 - pt(download_t.value, n-1))
 print(download_p_val)
 ```
@@ -195,8 +194,7 @@ print(download_p_val)
 #### Hypothesis Test for upload speeds
 
 ```{r}
-upload_sd <- sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n))
-upload_t.value = upload_mean/upload_sd
+upload_t.value = upload_mean/(sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n)))
 upload_p_val = 2*(1 - pt(upload_t.value,n-1))
 print(upload_p_val)
 ```
@@ -260,7 +258,7 @@ plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Aver
 The mean difference and the standard deviation of the difference in download
 speeds are calculated as follows:
 
-$\bar{X}_{diff}$ = 22.832, $S_diff$ = 68.6649584
+$\bar{X}_{download\:diff} = `r download_mean`$, $s_{download\:diff} = `r download_sd`$
 
 $p_(value)$ = 0.4606757
 
@@ -278,7 +276,7 @@ Statistical Testing of Mean Difference of Upload Speeds To test the
 significance of the difference, we calculate the t-statistic and the
 corresponding p-value:
 
-$\bar{X}_{diff}$ = 9.639, $S_diff$ = 67.4312574
+$\bar{X}_{upload\:diff} = `r upload_mean`$, $s_{upload\:diff} = `r upload_sd`$
 
 $p_(value)$ = 0.7647606
 
