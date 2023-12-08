@@ -1,8 +1,0 @@
-"0","upload_sd <- sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n))"
-"0","upload_t.value = upload_mean/upload_sd"
-"0","upload_p_val = 2*(1 - pt(upload_t.value,n-1))"
-"0","print(upload_p_val)"
-"1","[1]"
-"1"," 0.7647606"
-"1","
-"

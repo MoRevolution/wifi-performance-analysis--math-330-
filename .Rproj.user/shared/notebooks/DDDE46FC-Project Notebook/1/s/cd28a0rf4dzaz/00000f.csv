@@ -1,4 +1,0 @@
-"0","o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)"
-"0","o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)"
-"0","o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)"
-"0","o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)"

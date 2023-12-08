@@ -1,3 +1,0 @@
-"0","# TODO: change the Actual Time format with just hours and min"
-"0","hanson_data= read_excel(""datasheet.xlsx"", sheet=""Hanson"")"
-"0","oldmain_data= read_excel(""datasheet.xlsx"", sheet=""Old Main"")"

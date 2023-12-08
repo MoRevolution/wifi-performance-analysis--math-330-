@@ -1,5 +1,0 @@
-"0","download_sd = sd(result$download_diff)"
-"0","download_mean = mean(result$download_diff)"
-"0",""
-"0","upload_sd = sd(result$upload_diff)"
-"0","upload_mean = mean(result$upload_diff)"

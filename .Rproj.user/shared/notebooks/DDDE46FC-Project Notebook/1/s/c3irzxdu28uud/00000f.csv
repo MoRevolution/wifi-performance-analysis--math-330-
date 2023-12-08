@@ -1,4 +1,0 @@
-"0","h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)"
-"0","h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)"
-"0","h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)"
-"0","h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)"

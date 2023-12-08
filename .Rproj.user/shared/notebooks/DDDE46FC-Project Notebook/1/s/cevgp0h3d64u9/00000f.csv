@@ -1,8 +1,0 @@
-"0","download_sd <- sqrt((h_download_sd^2/n)+(o_download_sd^2/n))"
-"0","download_t.value = download_mean/download_sd"
-"0","download_p_val = 2*(1 - pt(download_t.value, n-1))"
-"0","print(download_p_val)"
-"1","[1]"
-"1"," 0.4606757"
-"1","
-"

@@ -3,7 +3,7 @@
     "path": "~/stats-project/updated_project/Project Notebook.Rmd",
     "project_path": "Project Notebook.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "4289815251",
     "contents": "",
     "dirty": false,
     "created": 1702000396734.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "262,45",
-        "scrollLine": "243",
+        "cursorPosition": "147,9",
+        "scrollLine": "142",
         "rmdVisualMode": "false",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
@@ -22,11 +22,11 @@
         "ignored_words": "Augustana\n"
     },
     "folds": "",
-    "lastKnownWriteTime": 1702009836,
+    "lastKnownWriteTime": 1702010264,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1702009836025,
+    "last_content_update": 1702010264724,
     "read_only": false,
     "read_only_alternatives": []
 }

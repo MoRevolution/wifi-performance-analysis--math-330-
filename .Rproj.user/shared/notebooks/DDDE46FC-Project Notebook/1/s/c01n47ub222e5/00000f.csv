@@ -1,2 +1,0 @@
-"0","library(knitr)"
-"0","kable(hanson_data[,c(2,4,5,6)], caption = ""Data taken in Hanson Hall of Science"", ""latex"")"
