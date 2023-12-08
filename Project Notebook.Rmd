@@ -6,9 +6,9 @@ header-includes:
   - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 ```{r echo=FALSE}
 # if not installed use: install.packages("package_name")
@@ -125,37 +125,13 @@ kable(sum_stats)
 ```
 
 
-Hanson 
-
-$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$
-
-$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$
-
-$s_{Hanson\;download} = `r h_download_sd`$
-
-$s_{Hanson\;upload} = `r h_upload_sd`$
-
-Old Main
-
-$\bar{X}_{OldMain\;download} = `r o_download_mean`$
-
-$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$
-
-$s_{OldMain\; download} = `r o_download_sd`$
-
-$s_{OldMain\; upload} = `r o_upload_sd`$
-
-
-DIFF 
-$$\bar{X}_{DIFF \;download} = `r download_mean`$$ $$\bar{X}_{DIFF \; upload} = `r upload_mean`$$ $$s_{DIFF \; download} = `r download_sd`$$ $$s_{DIFF \; upload} = `r upload_sd`$$
-
 
 ```{r}
 summary(result$download_diff)
 summary(result$upload_diff)
 ```
 
-Now to get some of the statistics:
+Now we get to the hypothesis testing:
 
 ```{r echo = FALSE, result = 'asis'}
 download_sd <- sd(result$download_diff)
