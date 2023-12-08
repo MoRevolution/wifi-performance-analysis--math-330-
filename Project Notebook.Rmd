@@ -6,12 +6,15 @@ output:
     df_print: paged
   pdf_document: default
 ---
-
-```{r}
+```{r echo=FALSE}
 # if not installed use: install.packages("package_name")
 suppressWarnings(library(readxl))
 suppressWarnings(library(psych))
+suppressPackageStartupMessages(library(ggplot2))
+```
 
+```{r echo=FALSE}
+# TODO: change the Actual Time format with just hours and min
 hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
 ```
@@ -41,6 +44,10 @@ The findings presented in this report shed light on the observed variances in Wi
 ## II. Experimental Setup
 
 Before diving into our methodology for data collection and our analysis, we feel it's necessary to provide contextual foundation for our study by taking a closer look at the wireless infrastructure in each building.
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(hanson_data[,c(2,4,5,6)], caption = "Data taken in Hanson Hall of Science", "latex")
+```
 
 ### a. Building Construction and WiFi Infrastructure
 
@@ -118,22 +125,18 @@ DIFF $$\bar{X}_{DIFF \;download} = `r download_mean`$$ $$\bar{X}_{DIFF \; upload
 
 ```{r}
 summary(result$download_diff)
-```
-
-```{r}
 summary(result$upload_diff)
 ```
 
 Now to get some of the statistics:
 
-```{r}
+```{r echo = FALSE, result = 'asis'}
 download_sd <- sd(result$download_diff)
 download_mean <- mean(result$download_diff)
 
 upload_sd <- sd(result$upload_diff)
 upload_mean <- mean(result$upload_diff)
 
-#use ggplot2
 library(ggplot2)
 
 plot_dist_hist <- function(n, mean, sd, binwidth) {
@@ -161,7 +164,7 @@ plot_dist_hist <- function(n, mean, sd, binwidth) {
     theme(plot.title = element_text(hjust = 0.5)) 
 }
 n = nrow(result)
-binwidth = 60 # passed to geom_histogram and stat_function
+binwidth = 60
 set.seed(1)
 
 plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
@@ -233,11 +236,7 @@ if (download_upper.bound < download_lower.bound)
 ```
 
 
-$$
-\begin{equation}
-P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)
-\end{equation}
-$$
+$$P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
 
 ## III. Results
 
