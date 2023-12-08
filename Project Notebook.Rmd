@@ -2,9 +2,9 @@
 title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
 author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r}
@@ -136,7 +136,7 @@ n = nrow(result)
 binwidth = 60 # passed to geom_histogram and stat_function
 set.seed(1)
 
-plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
 
 plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
 
