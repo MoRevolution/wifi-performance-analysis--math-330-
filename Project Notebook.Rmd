@@ -109,6 +109,19 @@ download_mean = mean(result$download_diff)
 upload_sd = sd(result$upload_diff)
 upload_mean = mean(result$upload_diff)
 
+download_stats <- data.frame(
+  mean_stats=c(h_download_mean, o_download_mean, download_mean),
+  sd_stats=c(h_download_sd, o_download_sd, download_sd),
+  row.names=c("Hanson", "Old Main", "Difference")
+)
+upload_stats <- data.frame(
+  mean_stats=c(h_upload_mean, o_upload_mean, upload_mean),
+  sd_stats=c(h_upload_sd, o_upload_sd, upload_sd),
+  row.names=c("Hanson", "Old Main", "Difference")
+)
+sum_stats <- data.frame(download_stats, upload_stats)
+colnames(sum_stats) <- c("Download Mean (Mbps)", "Download Standard Deviation", "Upload Mean (Mbps)", "Upload Standard Deviation")
+kable(sum_stats)
 ```
 
 
