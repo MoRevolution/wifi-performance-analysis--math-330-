@@ -1,0 +1,6 @@
+"0","# Given data"
+"0","n <- 16  # Sample size for each building"
+"0","h_download_mean <- mean(hanson_data$`Download Speed (Mbps)`)"
+"0","o_download_mean <- mean(oldmain_data$`Download Speed (Mbps)`)"
+"0","h_download_sd <-  sd(hanson_data$`Download Speed (Mbps)`)"
+"0","o_download_sd <- sd(oldmain_data$`Download Speed (Mbps)`)"
