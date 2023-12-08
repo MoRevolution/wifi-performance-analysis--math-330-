@@ -3,6 +3,7 @@ title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humaniti
 author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
 header-includes:
   - \usepackage{float}
+  - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
   pdf_document: default
@@ -97,8 +98,12 @@ h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
 ```
 
 
-Hanson $$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$ $$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$ $$s_{Hanson\;download} = `r h_download_sd`$$ $$s_{Hanson\;upload} = `r h_upload_sd`$$
-=======
+Hanson 
+
+$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$
+$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$
+$s_{Hanson\;download} = `r h_download_sd`$
+$s_{Hanson\;upload} = `r h_upload_sd`$
 
 ```{r}
 o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
@@ -109,7 +114,13 @@ o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
 
 Old Main
 
-$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$ $$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$ $$s_{OldMain\; download} = `r o_download_sd`$$ $$s_{OldMain\; upload} = `r o_upload_sd`$$
+$\bar{X}_{OldMain\;download} = `r o_download_mean`$
+
+$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$
+
+$s_{OldMain\; download} = `r o_download_sd`$
+
+$s_{OldMain\; upload} = `r o_upload_sd`$
 
 ```{r}
 download_sd = sd(result$download_diff)
@@ -169,13 +180,16 @@ set.seed(1)
 $$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
 
 #### Hypothesis Test for download speeds 
+
 ```{r}
 download_sd <- sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
 download_t.value = download_mean/download_sd
 download_p_val = 2*(1 - pt(download_t.value, n-1))
 print(download_p_val)
 ```
+
 #### Hypothesis Test for upload speeds
+
 ```{r}
 upload_sd <- sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n))
 upload_t.value = upload_mean/upload_sd
@@ -184,6 +198,7 @@ print(upload_p_val)
 ```
 
 #### Confidence interval for true download speed population mean 
+
 ```{r}
 h_download_t.score = qt(p=0.025, df= n-1)
 h_download_se = h_download_sd/sqrt(n)
@@ -198,7 +213,9 @@ if (h_download_upper.bound < h_download_lower.bound)
   print(c(h_download_lower.bound,h_download_upper.bound))
 }
 ```
+
 #### Confidence interval for true upload speed population mean 
+
 ```{r}
 o_download_t.score = qt(p=0.025, df=n-1)
 o_download_se = o_download_sd/sqrt(n)
