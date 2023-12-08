@@ -236,8 +236,6 @@ if (download_upper.bound < download_lower.bound)
 ```
 
 
-$$P(-t < \frac{(\bar{X_{A}} - \bar{X_{B}}) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
-
 ## III. Results
 
 ```{r echo = FALSE, figures-side, fig.show="hold", out.width="50%"}
