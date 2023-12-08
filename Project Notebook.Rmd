@@ -6,9 +6,9 @@ header-includes:
   - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 ```{r echo=FALSE}
 # if not installed use: install.packages("package_name")
@@ -124,6 +124,10 @@ colnames(sum_stats) <- c("Download Mean (Mbps)", "Download Standard Deviation", 
 kable(sum_stats)
 ```
 
+```{r echo = FALSE}
+box_plt <- ggplot(result)
+box_plt + geom_boxplot(aes(x="Download Speed Difference", y=download_diff)) + geom_boxplot(aes(x="Upload Speed Difference", y=upload_diff)) + geom_point(aes(x = "Download Speed Difference", y = download_diff), position = position_jitter(width = 0.1), alpha = 0.5) + geom_point(aes(x = "Upload Speed Difference", y = upload_diff),position = position_jitter(width = 0.1), alpha = 0.5) + labs(title = "Box Plot of Download & Upload Speed Difference", x = "", y = "Speed (Mbps)")
+```
 
 
 ```{r}
@@ -233,11 +237,6 @@ if (download_upper.bound < download_lower.bound)
 }else {
   print(c(download_lower.bound,download_upper.bound))
 }
-```
-
-```{r echo = FALSE}
-box_plt <- ggplot(result)
-box_plt + geom_boxplot(aes(x="Download Speed Difference", y=download_diff)) + geom_boxplot(aes(x="Upload Speed Difference", y=upload_diff)) + geom_point(aes(x = "Download Speed Difference", y = download_diff), position = position_jitter(width = 0.1), alpha = 0.5) + geom_point(aes(x = "Upload Speed Difference", y = upload_diff),position = position_jitter(width = 0.1), alpha = 0.5) + labs(title = "Box Plot of Download & Upload Speed Difference with 95% Confidence Level", x = "", y = "Speed (Mbps)")
 ```
 
 ## III. Results
