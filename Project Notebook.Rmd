@@ -1,25 +1,33 @@
 ---
-title: "R Notebook"
+title: "A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus"
+author: "Motti Kelbessa, Viet Bui, Max Sellers, Joshua Fosu-Agyemang"
+header-includes:
+  - \usepackage{float}
+  - \usepackage{amsmath}
+  - \floatplacement{figure}{H}
 output:
   pdf_document: default
   html_document:
     df_print: paged
 ---
-
-## A Comparative Analysis of Wi-Fi Performance Between Science and Humanities Buildings: Evidence of Infrastructure Inequality on a College Campus
-
-```{r}
+```{r echo=FALSE}
 # if not installed use: install.packages("package_name")
 suppressWarnings(library(readxl))
 suppressWarnings(library(psych))
+suppressPackageStartupMessages(library(ggplot2))
+```
 
+```{r echo=FALSE}
+# TODO: change the Actual Time format with just hours and min
 hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
 ```
 
-$H_T$: There is no difference in average WI-FI speed between Old Main and Hanson.
+$H_T$: There is no difference in average WI-FI speed between Old Main
+and Hanson.
 
-$H_A$: There is a difference in average WI-FI speed between Old Main and Hanson.
+$H_A$: There is a difference in average WI-FI speed between Old Main and
+Hanson.
 
 $\alpha=0.05$
 
@@ -31,9 +39,9 @@ Lorem
 
 In today's academic landscape, reliable and high-speed internet access is crucial for various aspects of college life, including coursework, social interactions, and entertainment, all of which are increasingly reliant on online platforms such as Moodle and Google services. However, the accessibility and quality of internet networks across Augustana College campuses are not uniform, creating disparities among students.
 
-This study focuses on the comparative analysis of Wi-Fi infrastructure quality in two distinct buildings: Hanson Hall, representing the STEM disciplines, and Old Main Hall, associated with the humanities. Rather than assuming a preconceived bias regarding the superiority of Wi-Fi infrastructure in one building over the other, our objective is to explore potential differences in internet speeds and assess if there are grounds to support claims of inequality.
+This study focuses on the comparative analysis of Wi-Fi infrastructure quality in two distinct buildings: Hanson Hall, representing the STEM disciplines, and Old Main Hall, associated with the humanities. Rather than assuming a preconceived bias regarding the superiority of Wi-Fi infrastructure in one building over the other, our objective is to explore potential differences in internet speeds and assess if there are grounds to support claims of inequality. To ensure a well informed investigation, we sought the expertise of Scott Dean, the Network Manager for Augustana College. In his role, Scott oversees all network infrastructure on campus and is also involved in cyber security for the network.
 
-Over the course of a week, our team conducted Wi-Fi speed tests from morning to afternoon at specific locations within Hanson Hall and Old Main Hall. Using the Augustana homegrown Internet Speed Test ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
+Over the course of a week, our team conducted Wi-Fi speed tests from morning(10:25 AM) to afternoon (4:45 PM) at specific locations within Hanson Hall and Old Main Hall: the Old Main second floor central corridor (Figure 2), and the Hanson Rotunda on the second floor (Figure 1). Using the Augustana's homegrown Internet Speed Test tool ([speedtest.augustana.edu](speedtest.augustana.edu){.uri}), we gathered data on download and upload speeds, providing 16 data points for each location in the two buildings. Our hypothesis centers on investigating whether average download speeds in either Hanson Hall or Old Main significantly surpass the download speeds in the other, and if upload speeds exhibit a similar trend.
 
 The findings presented in this report shed light on the observed variances in Wi-Fi speeds between these academic buildings. It's important to note that while our focus is on wireless speeds, we acknowledge that the potential inequality might not solely be a result of wireless infrastructure bias but could also be influenced by the physical layout and construction of the buildings. Additionally, it's crucial to clarify that our study specifically examines wireless speeds and does not encompass an analysis of wired speeds via an Ethernet port. This distinction is essential as the physical layout of the building, along with the choice of network connectivity, can impact the overall internet experience. Even more, the physical layout and construction of the building doesn't have as much of an effect, if any at all, on wired speeds.
 
@@ -41,72 +49,101 @@ The findings presented in this report shed light on the observed variances in Wi
 
 Before diving into our methodology for data collection and our analysis, we feel it's necessary to provide contextual foundation for our study by taking a closer look at the wireless infrastructure in each building.
 
+### a. Building Construction and WiFi Infrastructure
+
+Starting with Hanson Hall (shown in Figure 1), the first thing to notice is that the building is quite long as compared to other buildings and not wide. Most classrooms in the building are along the hallway in the center of the buildings with a few others on the left along Lecture Hall 1 (Room 102) and right side by the new extension. Thus, to get maximum coverage, the [Access Points](https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/what-is-access-point.html) (fancy word for routers) need to be distributed linearly across the length of the building while also covering areas like the second floor Rotunda and the new extension.
+
+![](media/hanson_2-transformed.png "Hanson 2_nd Floor")
+
+Figure 1: Hanson Hall $2^{nd}$ floor floor map with 2.4GHz band signal heatmap overlay
+
+Figure 1 is a floor plan of the second floor with a signal heatmap overlay for the 2.4GHz band (more details on signal bands [here](https://kb.netgear.com/000064790/What-are-WiFi-bands-and-how-many-do-I-need-for-my-network)). The heatmap visually illustrates wireless signal strength in a designated area, with the color gradients depicting varying intensities. Green or blue hues signify average to low signal strength (-50dBm to -100dBm), while red or yellow indicate above average to good signal strength (-20dBm to -50dBm). Although the picture focuses on the 2.4 GHz band, all Access Points (APs) on campus are dual band and support both 2.4GHz and 5GHz. The distinction between these bands lies in the fact that the lower frequency band provides extensive WiFi coverage but at slower speeds, while the higher band offers less coverage but faster data transmission. Additional information on wireless frequencies can be found [here](https://kb.netgear.com/29396/What-is-the-difference-between-2-4-GHz-5-GHz-and-6-GHz-wireless-frequencies). Each blue icon featuring a WiFi symbol on the map represents an AP, and it's noteworthy that the layout and distribution of routers remain consistent across all floors of the building.
+
+Although the overall structure of Old Main (Figure 2) is similar to Hanson, just slightly wider, the biggest difference between the two buildings lies in the distribution of Access Points - Hanson clearly has a lot more per floor as compared to Old Main. We will expand on how this distinction affects our hypothesis and overall experiment in the discussion section.
+
+![](media/oldmain-transformed.png)
+
+Figure 2: Old Main $2^{nd}$ floor map with 2.4GHz band signal heatmap overlay
+
+### b. Data Collection
+
+As we mentioned in the introduction, we collected data by using [speedtest.augustana.edu](speedtest.augustana.edu){.uri} on the second floor of each building: second floor rotunda in Hanson, and second floor central corridor in Old Main. This was done by running a speed test at each location around the time window for different times across the day: 10:30 AM, 1:30 PM, 3:00 PM, and 4:30 PM. The details for each data point are in this [Google Sheet](https://docs.google.com/spreadsheets/d/1y3OSnIxIV4QFOMzsykv9vPy7rWPIdvfd_vLXNGu6V1g/edit?usp=sharing).
+
+The full data parameters for each of our data point include: location, date, expected time (our recommended time interval for everyone in our group to be there and record), actual time (our actual time during the measurement), download speed (in Mbps), upload Speed (in Mbps), ping (in ms), jitter (in ms), device manufacture, and device model.
+
+The rest of this section shows summaries of our data and some samples of it.
+
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(hanson_data[,c(2,4,5,6)], caption = "Data taken in Hanson Hall of Science")
+kable(oldmain_data[,c(2,4,5,6)], caption = "Data taken in Old Main Hall")
+```
+
+
 ```{r}
-# get the differece between download and upload speeds for each building
 result <-
   data.frame(
     download_diff = hanson_data$`Download Speed (Mbps)` - oldmain_data$`Download Speed (Mbps)`,
     upload_diff = hanson_data$`Upload Speed (Mbps)` - oldmain_data$`Upload Speed (Mbps)`
   )
 
+
+kable(result, caption="The differece between download and upload speeds for each building")
 ```
 
-Here is a summary of the data:
-
-```{r}
+```{r echo = FALSE}
+# Hanson stats
 h_download_mean = mean(hanson_data$`Download Speed (Mbps)`)
 h_upload_mean = mean(hanson_data$`Upload Speed (Mbps)`)
 h_download_sd = sd(hanson_data$`Download Speed (Mbps)`)
 h_upload_sd = sd(hanson_data$`Upload Speed (Mbps)`)
-```
-Hanson
-$$\bar{X}_{Hanson\;{download}} = `r h_download_mean`$$
-$$\bar{X}_{Hanson\;upload} = `r h_upload_mean`$$
-$$s_{Hanson\;download} = `r h_download_sd`$$
-$$s_{Hanson\;upload} = `r h_upload_sd`$$
-
-```{r}
+# Old Main stats
 o_download_mean = mean(oldmain_data$`Download Speed (Mbps)`)
 o_upload_mean = mean(oldmain_data$`Upload Speed (Mbps)`)
 o_download_sd = sd(oldmain_data$`Download Speed (Mbps)`)
 o_upload_sd = sd(oldmain_data$`Upload Speed (Mbps)`)
-```
-Old Main
-$$\bar{X}_{OldMain\;download} = `r o_download_mean`$$
-$$\bar{X}_{OldMain\; upload} = `r o_upload_mean`$$
-$$s_{OldMain\; download} = `r o_download_sd`$$
-$$s_{OldMain\; upload} = `r o_upload_sd`$$
-```{r}
+# Difference download speed between building stats 
 download_sd = sd(result$download_diff)
 download_mean = mean(result$download_diff)
-
+# Difference upload speed between building stats 
 upload_sd = sd(result$upload_diff)
 upload_mean = mean(result$upload_diff)
+
+download_stats <- data.frame(
+  mean_stats=c(h_download_mean, o_download_mean, download_mean),
+  sd_stats=c(h_download_sd, o_download_sd, download_sd),
+  row.names=c("Hanson", "Old Main", "Difference")
+)
+upload_stats <- data.frame(
+  mean_stats=c(h_upload_mean, o_upload_mean, upload_mean),
+  sd_stats=c(h_upload_sd, o_upload_sd, upload_sd),
+  row.names=c("Hanson", "Old Main", "Difference")
+)
+sum_stats <- data.frame(download_stats, upload_stats)
+colnames(sum_stats) <- c("Download Mean (Mbps)", "Download Standard Deviation", "Upload Mean (Mbps)", "Upload Standard Deviation")
+kable(sum_stats)
 ```
-DIFF
-$$\bar{X}_{DIFF \;download} = `r download_mean`$$
-$$\bar{X}_{DIFF \; upload} = `r upload_mean`$$
-$$s_{DIFF \; download} = `r download_sd`$$
-$$s_{DIFF \; upload} = `r upload_sd`$$
+
+```{r echo = FALSE, fig.align='center',out.width="75%"}
+box_plt <- ggplot(result)
+box_plt + geom_boxplot(aes(x="Download Speed Difference", y=download_diff)) + geom_boxplot(aes(x="Upload Speed Difference", y=upload_diff)) + geom_point(aes(x = "Download Speed Difference", y = download_diff), position = position_jitter(width = 0.1), alpha = 0.5) + geom_point(aes(x = "Upload Speed Difference", y = upload_diff),position = position_jitter(width = 0.1), alpha = 0.5) + labs(title = "Box Plot of Download & Upload Speed Difference", x = "", y = "Speed (Mbps)")
+```
+
 
 ```{r}
 summary(result$download_diff)
-```
-
-```{r}
 summary(result$upload_diff)
 ```
 
-Now to get some of the statistics:
+Now we get to the hypothesis testing:
 
-```{r}
+```{r echo = FALSE, result = 'asis'}
 download_sd <- sd(result$download_diff)
 download_mean <- mean(result$download_diff)
 
 upload_sd <- sd(result$upload_diff)
 upload_mean <- mean(result$upload_diff)
 
-#use ggplot2
 library(ggplot2)
 
 plot_dist_hist <- function(n, mean, sd, binwidth) {
@@ -134,23 +171,138 @@ plot_dist_hist <- function(n, mean, sd, binwidth) {
     theme(plot.title = element_text(hjust = 0.5)) 
 }
 n = nrow(result)
-binwidth = 60 # passed to geom_histogram and stat_function
+binwidth = 20
 set.seed(1)
+```
+$$P(-t < \frac{(\bar{X}_A - \bar{X}_B) - (\mu_A - \mu_B) }{\sqrt{\frac{S_A^2}{n_A} + \frac{S_B^2}{n_B}}} < t)$$
 
-plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average   Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+#### Hypothesis Test for download speeds 
 
-plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
+```{r}
+download_t.value = download_mean/(sqrt((h_download_sd^2/n)+(o_download_sd^2/n)))
+download_p_val = 2*(1 - pt(download_t.value, n-1))
+print(download_p_val)
+```
 
+#### Hypothesis Test for upload speeds
+
+```{r}
+upload_t.value = upload_mean/(sqrt((h_upload_sd^2/n)+(o_upload_sd^2/n)))
+upload_p_val = 2*(1 - pt(upload_t.value,n-1))
+print(upload_p_val)
+```
+
+#### Confidence interval for true download speed population mean 
+
+```{r}
+h_download_t.score = qt(p=0.025, df= n-1)
+h_download_se = h_download_sd/sqrt(n)
+h_download_margin.error <- h_download_t.score * h_download_se
+h_download_lower.bound <- h_download_mean - h_download_margin.error
+h_download_upper.bound <- h_download_mean + h_download_margin.error
+
+if (h_download_upper.bound < h_download_lower.bound)
+{
+  print(c(h_download_upper.bound,h_download_lower.bound))
+}else {
+  print(c(h_download_lower.bound,h_download_upper.bound))
+}
+```
+
+#### Confidence interval for true upload speed population mean 
+
+```{r}
+o_download_t.score = qt(p=0.025, df=n-1)
+o_download_se = o_download_sd/sqrt(n)
+o_download_margin.error <- o_download_t.score * o_download_se
+o_download_lower.bound <- o_download_mean - o_download_margin.error
+o_download_upper.bound <- o_download_mean + o_download_margin.error
+if (o_download_upper.bound < o_download_lower.bound)
+{
+  print(c(o_download_upper.bound,o_download_lower.bound))
+}else {
+  print(c(o_download_lower.bound,o_download_upper.bound))
+}
+```
+
+```{r}
+download_t.score = qt(p=0.025, df=n-1)
+
+download_margin.error <- download_t.score * sqrt((h_download_sd^2/n)+(o_download_sd^2/n))
+download_lower.bound <- download_mean - download_margin.error
+download_upper.bound <- download_mean + download_margin.error
+if (download_upper.bound < download_lower.bound)
+{
+  print(c(download_upper.bound,download_lower.bound))
+}else {
+  print(c(download_lower.bound,download_upper.bound))
+}
 ```
 
 ## III. Results
 
-Lorem
+```{r echo = FALSE, figures-side, fig.show="hold", out.width="50%"}
+plot_dist_hist(n, download_mean, download_sd, binwidth) + labs(title = "Plot of Average Download Speed Difference Distribution", x = "Speed (Mbps)", y = "Occurance")
+plot_dist_hist(n, upload_mean, upload_sd, binwidth) + labs(title = "Plot of Average Upload Speed Difference Distribution",x ="Speed (Mbps)", y = "Occurance")
+```
+The mean difference and the standard deviation of the difference in download
+speeds are calculated as follows:
+
+$\bar{X}_{download\:diff} = `r download_mean`$, $s_{download\:diff} = `r download_sd`$
+
+$p_(value)$ = 0.4606757
+
+The p-value of 0.4606757 is greater than the
+significance level of 0.05. This indicates that the observed difference
+in WiFi speeds between Hanson Hall and Old Main Hall is not
+statistically significant at the 5% significance level. Hence we accept
+the null hypothesis.
+
+The 95% confidence interval for the difference in mean download speeds
+between Hanson Hall and Old Main Hall, given as approximately
+[-41.44125, 87.10625] Mbps.
+
+Statistical Testing of Mean Difference of Upload Speeds To test the
+significance of the difference, we calculate the t-statistic and the
+corresponding p-value:
+
+$\bar{X}_{upload\:diff} = `r upload_mean`$, $s_{upload\:diff} = `r upload_sd`$
+
+$p_(value)$ = 0.7647606
+
+Meaning of P_value The p-value of 0.7647606 is greater than the
+significance level of 0.05. This indicates that the observed difference
+in WiFi speeds between Hanson Hall and Old Main Hall is not
+statistically significant at the 5% significance level. Hence we accept
+the null hypothesis.
+
+The 95% confidence interval for the difference in mean download speeds
+between Hanson Hall and Old Main Hall, given as approximately [-57.7842,
+77.06295] Mbps. 
 
 ## IV. Discussion
 
-Lorem
+The outcomes of our study do not substantiate a definitive causation due to the limitations within a small-scale experiment. Our network specialist, Scott D. Dean, shared insights into the campus internet infrastructure, focused on Old Main and Hanson buildings. Notably, Old Main recently underwent an upgrade in its Internet access points to align with those in Hanson, with the intent of minimizing variations in quality of the Wi-Fi signal strength. Despite these upgrades, Figures 1 and 2 revealed a notable disparity in the numbers of access points between the two buildings.
 
-Talk about the interview with Scott Dean \## References
+A potential confounding variable arises from the distinct number of access points in each building; Old Main's 1st floor has only 2 access points, while Hanson's 2nd floor boasts 6. This difference may contribute to the observed differences in Wi-Fi performance.
+
+Scott D. Dean emphasized a crucial aspect—namely, that an increased number of internet devices (clients) connected to an access point inside a building can lead to a decrease in Wi-Fi speed. This principle sheds light on the observed variations and prompts us to consider the impact of user load on the network.
+
+Taking into account the general class schedule, it is reasonable to infer that higher Wi-Fi demand on specific days, such as Monday, Wednesday, and Friday, could influence the observed differences in Wi-Fi speed. Moreover, the 2023 Fall Term received a higher number of freshmen FYI101 classes in Old Main, as opposed to Hanson, where classrooms are primarily reserved for foundation science classes, introduces another layer of complexity.
+
+In conclusion, while our study establishes a foundation for understanding the Internet speed between Old Main and Hanson, these confounding variables must be accounted in drawing a causal relationship. Further investigations are needed to well-explored the variations in Wi-Fi signal strength, potentially to address the differences of internet speed between a STEM building and a humanities building on Augustana College campus.
+
+## Author's Contributions and Conclusions
+**Max Sellers:**
+
+I worked mostly on creating the calculations for the means, standard deviations, p-values, and confidence intervals for the data we had with Joshua and compared after to be confident it was correct. We all started by collecting 8 data sets each to make 32 sets, but we only calculated 16 sets at each location. However, since we needed 30 sets each, I took multiple sets in the morning because I did not have class. I collected 19 data sets out of the total 60 sets in total. This is what I did to make up for not being able to meet with ITS due to having class. 
+  
+I learned in this project that analyzing Wi-Fi data has so many factors and that the samples are not very controlled. We used different devices with different operating systems (MacOS, WindowsOS, and iOS) and speeds (Motti’s computer was faster than the others). This made it hard to collect a consistent data set. Also, the timing of when classes were in session was imperative to the data and since we had a wide range of times it would not be consistent. However, for how tricky Wi-fi is I think we tried our best to make it as consistent as
+possible given the circumstances like doing Hanson and Old Main with a 15-minute range of each other.
+
+**Viet M. Bui**
+
+
+## References
 
 Using IEEE Style
