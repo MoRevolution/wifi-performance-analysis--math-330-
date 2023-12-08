@@ -292,6 +292,15 @@ Taking into account the general class schedule, it is reasonable to infer that h
 
 In conclusion, while our study establishes a foundation for understanding the Internet speed between Old Main and Hanson, these confounding variables must be accounted in drawing a causal relationship. Further investigations are needed to well-explored the variations in Wi-Fi signal strength, potentially to address the differences of internet speed between a STEM building and a humanities building on Augustana College campus. 
 
+## Author's Contributions and Conclusions
+**Max Sellers:**
+
+I worked mostly on creating the calculations for the means, standard deviations, p-values, and confidence intervals for the data we had with Joshua and compared after to be confident it was correct. We all started by collecting 8 data sets each to make 32 sets, but we only calculated 16 sets at each location. However, since we needed 30 sets each, I took multiple sets in the morning because I did not have class. I collected 19 data sets out of the total 60 sets in total. This is what I did to make up for not being able to meet with ITS due to having class. 
+  
+I learned in this project that analyzing Wi-Fi data has so many factors and that the samples are not very controlled. We used different devices with different operating systems (MacOS, WindowsOS, and iOS) and speeds (Motti’s computer was faster than the others). This made it hard to collect a consistent data set. Also, the timing of when classes were in session was imperative to the data and since we had a wide range of times it would
+not be consistent. However, for how tricky Wi-fi is I think we tried our best to make it as consistent as
+possible given the circumstances like doing Hanson and Old Main with a 15-minute range of each other.
+
 ## References
 
 Using IEEE Style
