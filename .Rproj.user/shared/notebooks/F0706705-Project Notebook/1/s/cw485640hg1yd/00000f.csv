@@ -1,0 +1,8 @@
+"0","# Calculate the mean and standard deviation of the difference in download speeds"
+"0","mean_diff <- h_download_mean - o_download_mean"
+"0","sd_diff <- sqrt((h_download_sd^2 / n) + (o_download_sd^2 / n))"
+"0","mean_diff"
+"1","[1]"
+"1"," 22.8325"
+"1","
+"
