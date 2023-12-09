@@ -339,13 +339,17 @@ The 95% confidence interval for the difference in mean download speeds between H
 
 ## IV. Discussion
 
-The outcomes of our study do not substantiate a definitive causation due to the limitations within a small-scale experiment. Our network specialist, Scott D. Dean, shared insights into the campus internet infrastructure, focused on Old Main and Hanson buildings. Notably, Old Main recently underwent an upgrade in its Internet access points to align with those in Hanson, with the intent of minimizing variations in quality of the Wi-Fi signal strength. Despite these upgrades, Figures 1 and 2 revealed a notable disparity in the numbers of access points between the two buildings.
+The outcomes of our study do not substantiate a definitive causation due to the limitations within a small-scale experiment. The insights that Scott, our network specialist, shared insights was a . Notably, Old Main recently underwent an upgrade in its Internet access points to align with those in Hanson, with the intent of minimizing variations in quality of the Wi-Fi signal strength; it was fitted with [Ruckus R750s](https://webresources.ruckuswireless.com/datasheets/r750/ds-ruckus-r750.pdf) as compared to Hanson's [Ruckus R650s](https://www.commscope.com/globalassets/digizuite/61773-ds-ruckus-r650.pdf) which are less capable. Despite these upgrades, Figures 1 and 2 clearly show a notable disparity in the numbers of access points between the two buildings.
 
-A potential confounding variable arises from the distinct number of access points in each building; Old Main's 1st floor has only 2 access points, while Hanson's 2nd floor boasts 6. This difference may contribute to the observed differences in Wi-Fi performance.
+A potential confounding variable arises from the distinct number of access points in each building; Old Main's 1st floor has only 2 access points, while Hanson's 2nd floor boasts 6. This difference may have contributed to the observed differences in Wi-Fi performance.
 
 Scott D. Dean emphasized a crucial aspect---namely, that an increased number of internet devices (clients) connected to an access point inside a building can lead to a decrease in Wi-Fi speed. This principle sheds light on the observed variations and prompts us to consider the impact of user load on the network.
 
-Taking into account the general class schedule, it is reasonable to infer that higher Wi-Fi demand on specific days, such as Monday, Wednesday, and Friday, could influence the observed differences in Wi-Fi speed. Moreover, the 2023 Fall Term received a higher number of freshmen FYI101 classes in Old Main, as opposed to Hanson, where classrooms are primarily reserved for foundation science classes, introduces another layer of complexity.
+Taking into account the general class schedule, it is reasonable to infer that higher Wi-Fi demand on specific days, such as Monday, Wednesday, and Friday, could influence the observed differences in Wi-Fi speed. Moreover, the 2023 Fall Term received a higher number of freshmen FYI-101 classes in Old Main, as opposed to Hanson, where classrooms are primarily reserved for foundation science classes, introduces another layer of complexity. And although Hanson Has a lot more clients due to it's size and capacity, we can't say that the speeds there are slower due to multiple confounding variables including the fact that the internet traffic for both buildings was about average or even below. Check the figures below for more context.
+
+![Hanson traffic over the past 7 days](media/hanson traffic.png)
+
+![Old Main traffic over the past 7 days](media/Old Main Traffic.png)
 
 In conclusion, while our study establishes a foundation for understanding the Internet speed between Old Main and Hanson, these confounding variables must be accounted in drawing a causal relationship. Further investigations are needed to well-explored the variations in Wi-Fi signal strength, potentially to address the differences of internet speed between a STEM building and a humanities building on Augustana College campus.
 
@@ -367,6 +371,16 @@ I worked mostly on calculating the means , standard deviations, p-values, and co
 
 I studied that there could be many factors influencing WIFI, including the day accessed, the number of people on the floor at a particular time, the device used, operating systems and maybe external factors such as the ITS router. Therefore it makes it difficult to have a non-bias data. However, the ITS did help us to make our data as consistent as possible.
 
+**Motti Kelbessa:**
+
+Most of the tasks I did were in collaboration with Viet. I worked with him on recon for our expert, Scott Dean, and set up communications between our team and Scott so that we can get updates on the state of the network through our data collection process. As Viet metioned, I also contributed by working on the laoyout and defining the experimental setup that we used to analyse the data while also setting up background information about the campus' network infrastructure. Additionally, with the layout and structure that others provided for our report, I worked on styling the report, consolidating redundant code, and contextualizing the information we presented. Lastly, just like everyone else in the team, I collected my fair share of data.
+
+Of all things, I learned a lot about both the infrastructure on campus and the foundation of tech that underlies it all. Working with Scott was a fun learning experience.
+
 ## References
 
-Using IEEE Style
+[1] \"What is an access point?,\" Cisco, <https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/what-is-access-point.html> (accessed Dec. 8, 2023).
+
+[2] Netgear, \"What are WIFI bands and how many do I need for my network?,\" NETGEAR KB, <https://kb.netgear.com/000064790/What-are-WiFi-bands-and-how-many-do-I-need-for-my-network> (accessed Dec. 8, 2023).
+
+[3] Netgear, \"What is the difference between 2.4 GHz, 5 GHz, and 6 GHz wireless frequencies?,\" NETGEAR KB, <https://kb.netgear.com/29396/What-is-the-difference-between-2-4-GHz-5-GHz-and-6-GHz-wireless-frequencies> (accessed Dec. 8, 2023).
