@@ -61,7 +61,7 @@ Although the overall structure of Old Main (Figure 2) is similar to Hanson, just
 
 ![](media/oldmain-transformed-min.png)
 
-$$\textrm{Figure 2: Old Main} \: 1^{st} \: \textrm{floor map with} \: 2.4GHz \: \textrm{band signal heatmap overlay} $$
+$$\textrm{Figure 2: Old Main} \: 1^{st} \: \textrm{floor map with} \: 5.0GHz \: \textrm{band signal heatmap overlay} $$
 
 ### b. Data Collection
 
