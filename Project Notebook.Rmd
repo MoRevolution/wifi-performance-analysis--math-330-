@@ -6,9 +6,9 @@ header-includes:
   - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r echo=FALSE}
@@ -24,10 +24,9 @@ hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
 ```
 
+
 $$H_T: \textrm{There is not difference in Average Wi-Fi speed between Hanson Hall of Science and Old Main.}$$
-
 $$H_A: \textrm{There is a difference between in average Wi-Fi speeds between Hanson Hall of Science and Old main.}$$
-
 $$\alpha=0.05$$
 
 ### Abstract
