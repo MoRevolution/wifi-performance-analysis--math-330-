@@ -31,7 +31,7 @@ $$\alpha=0.05$$
 
 ### Abstract
 
-Lorem
+The project investigates potential differences in Wi-Fi performance between Hanson Hall of Science and Old Main Hall on Augustana College (IL) campus, representing the sciences and humanities buildings respectively. The objective was to hypothesis test and assess if there are grounds to claim infrastructure inequality. The methodology involved collecting download and upload speed data at specific locations in each building over one week. Thirty data points were gathered at each location using the college's internal speed test site. The analysis focused on comparing the mean download and upload speeds between buildings and testing if observed differences were statistically significant. The results did not confirm definitive causation due to limitations of the small-scale experiment. While the study establishes a baseline for understanding variability in Wi-Fi speeds, confounding variables related to network usage and hardware configurations make drawing causal conclusions difficult without further investigation. Overall, this preliminary analysis highlights infrastructure variations between academic buildings that needs a deeper exploration through additional controlled studies.
 
 ## I. Introduction
 
