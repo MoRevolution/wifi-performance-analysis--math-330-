@@ -6,9 +6,9 @@ header-includes:
   - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r echo=FALSE}
