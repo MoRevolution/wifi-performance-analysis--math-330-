@@ -6,9 +6,9 @@ header-includes:
   - \usepackage{amsmath}
   - \floatplacement{figure}{H}
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r echo=FALSE}
@@ -24,10 +24,9 @@ hanson_data= read_excel("datasheet.xlsx", sheet="Hanson")
 oldmain_data= read_excel("datasheet.xlsx", sheet="Old Main")
 ```
 
+
 $$H_T: \textrm{There is not difference in Average Wi-Fi speed between Hanson Hall of Science and Old Main.}$$
-
 $$H_A: \textrm{There is a difference between in average Wi-Fi speeds between Hanson Hall of Science and Old main.}$$
-
 $$\alpha=0.05$$
 
 ### Abstract
@@ -62,7 +61,7 @@ Although the overall structure of Old Main (Figure 2) is similar to Hanson, just
 
 ![](media/oldmain-transformed-min.png)
 
-$$\textrm{Figure 1: Old Main} \: 1^{st} \: \textrm{floor map with} \: 2.4GHz \: \textrm{band signal heatmap overlay} $$
+$$\textrm{Figure 2: Old Main} \: 1^{st} \: \textrm{floor map with} \: 5.0GHz \: \textrm{band signal heatmap overlay} $$
 
 ### b. Data Collection
 
