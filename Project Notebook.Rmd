@@ -378,6 +378,8 @@ Of all things, I learned a lot about both the infrastructure on campus and the f
 
 ## References
 
+[0] Github Repository, URL <https://github.com/MoRevolution/330-Hypothesis-Testing/>
+
 [1] \"What is an access point?,\" Cisco, <https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/what-is-access-point.html> (accessed Dec. 8, 2023).
 
 [2] Netgear, \"What are WIFI bands and how many do I need for my network?,\" NETGEAR KB, <https://kb.netgear.com/000064790/What-are-WiFi-bands-and-how-many-do-I-need-for-my-network> (accessed Dec. 8, 2023).
