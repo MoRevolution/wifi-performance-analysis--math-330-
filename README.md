@@ -18,3 +18,8 @@ Data was collected over the course of one week, focusing on key Wi-Fi performanc
     Network stability
 
 Measurements were taken at specific locations within each building to ensure consistent and comparable results.
+
+---
+
+### Course Information
+This project was completed as part of the coursework for **[Math-330]** at **Augustana College**, under the instruction of **[Dr. Stacey Rodman]**.
