@@ -22,4 +22,4 @@ Measurements were taken at specific locations within each building to ensure con
 ---
 
 ### Course Information
-This project was completed as part of the coursework for **[Math-330]** at **Augustana College**, under the instruction of **[Dr. Stacey Rodman]**.
+This project was completed as part of the coursework for **Math-330** at **Augustana College**, under the instruction of **Dr. Stacey Rodman**.
