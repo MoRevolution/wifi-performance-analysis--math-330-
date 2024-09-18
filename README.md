@@ -11,7 +11,7 @@ The main goal of this project is to conduct a statistical hypothesis test to det
 
 Data was collected over the course of one week, focusing on key Wi-Fi performance metrics such as:
 
-* Download speeasd
+* Download speed
 * Upload speed
 * Signal strength
 * Latency
